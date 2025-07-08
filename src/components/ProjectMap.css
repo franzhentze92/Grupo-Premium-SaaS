@@ -1,0 +1,127 @@
+/* Project Map Styles */
+.project-marker {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.project-marker:hover {
+  transform: scale(1.1);
+}
+
+.project-marker.selected .marker-pin {
+  border: 3px solid #8cb43a;
+  box-shadow: 0 0 0 3px rgba(140, 180, 58, 0.3);
+}
+
+.marker-container {
+  position: relative;
+}
+
+.marker-pin {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  transition: all 0.2s ease;
+}
+
+.marker-pin.active {
+  background-color: #22c55e;
+  color: white;
+}
+
+.marker-pin.completed {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.marker-pin.planned {
+  background-color: #eab308;
+  color: white;
+}
+
+.marker-label {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.project-marker:hover .marker-label {
+  opacity: 1;
+}
+
+.project-popup {
+  padding: 8px;
+}
+
+.popup-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #1f2937;
+}
+
+.popup-details p {
+  margin: 4px 0;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.popup-details strong {
+  color: #374151;
+}
+
+/* Mapbox GL JS custom styles */
+.mapboxgl-popup-content {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e5e7eb;
+}
+
+.mapboxgl-popup-close-button {
+  color: #6b7280;
+  font-size: 16px;
+  padding: 4px 8px;
+}
+
+.mapboxgl-popup-close-button:hover {
+  color: #374151;
+  background-color: #f3f4f6;
+}
+
+.mapboxgl-ctrl-group {
+  border-radius: 8px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.mapboxgl-ctrl-group button {
+  border-radius: 0;
+}
+
+.mapboxgl-ctrl-group button:first-child {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.mapboxgl-ctrl-group button:last-child {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.mapboxgl-ctrl-group button:hover {
+  background-color: #f3f4f6;
+} 
