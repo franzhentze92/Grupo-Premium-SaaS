@@ -62,7 +62,7 @@ const DepartamentoFinanzasTareas: React.FC = () => {
     { name: 'Pendientes', value: tareas.filter(t => t.estado === 'Pendiente').length },
   ];
 
-  const handleTaskClick = (task: GanttTask) => {
+  const handleTaskClick = (task: GanttCalendarTask) => {
     // TODO: Replace with custom dialog/modal for task details
     alert(`Tarea: ${task.name}\nEstado: ${task.progress}%`);
   };
@@ -71,7 +71,7 @@ const DepartamentoFinanzasTareas: React.FC = () => {
     <div className="space-y-8 p-6 bg-gray-50 min-h-screen">
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-2">
         <h1 className="text-3xl font-bold text-gray-800 mb-2 flex items-center gap-3">
-          <span className="p-2 bg-[#8cb43a] rounded-lg"><ListChecks className="text-white h-6 w-6" /></span>
+          <span className="p-2 bg-[#1e3269] rounded-lg"><ListChecks className="text-white h-6 w-6" /></span>
           Finanzas - Tareas
         </h1>
         <p className="text-gray-600">Gestión y seguimiento de tareas del departamento de finanzas</p>
@@ -82,8 +82,8 @@ const DepartamentoFinanzasTareas: React.FC = () => {
           <Card key={idx} className="bg-white shadow-sm border border-gray-200 hover:shadow-md transition-shadow rounded-2xl">
             <CardContent className="p-5 flex flex-col gap-2">
               <div className="flex items-center gap-3">
-                <span className="p-2 rounded-xl" style={{ background: 'rgba(140,180,58,0.12)' }}>
-                  <kpi.icon className="h-6 w-6 text-[#8cb43a]" />
+                <span className="p-2 rounded-xl" style={{ background: 'rgba(30,50,105,0.12)' }}>
+                  <kpi.icon className="h-6 w-6 text-[#1e3269]" />
                 </span>
                 <div>
                   <p className="text-sm font-medium text-gray-600">{kpi.label}</p>
@@ -104,7 +104,7 @@ const DepartamentoFinanzasTareas: React.FC = () => {
       <Card className="bg-white shadow-sm border border-gray-200 rounded-2xl">
         <CardHeader>
           <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-            <Filter className="text-[#8cb43a]" />
+            <Filter className="text-[#1e3269]" />
             Filtros
           </CardTitle>
         </CardHeader>
@@ -144,21 +144,21 @@ const DepartamentoFinanzasTareas: React.FC = () => {
       {/* Tabs for dashboard views */}
       <Tabs value={tab} onValueChange={v => setTab(v as typeof tab)} className="space-y-6">
         <TabsList className="grid w-full grid-cols-4 rounded-full bg-gray-100 p-1">
-          <TabsTrigger value="detailed" className="flex items-center gap-2 rounded-full data-[state=active]:bg-[#8cb43a] data-[state=active]:text-white transition px-4 py-2"><List className="h-4 w-4" />Detalle</TabsTrigger>
-          <TabsTrigger value="overview" className="flex items-center gap-2 rounded-full data-[state=active]:bg-[#8cb43a] data-[state=active]:text-white transition px-4 py-2"><Eye className="h-4 w-4" />Resumen</TabsTrigger>
-          <TabsTrigger value="analytics" className="flex items-center gap-2 rounded-full data-[state=active]:bg-[#8cb43a] data-[state=active]:text-white transition px-4 py-2"><BarChart2 className="h-4 w-4" />Analytics</TabsTrigger>
-          <TabsTrigger value="gantt" className="flex items-center gap-2 rounded-full data-[state=active]:bg-[#8cb43a] data-[state=active]:text-white transition px-4 py-2"><Calendar className="h-4 w-4" />Gantt</TabsTrigger>
+          <TabsTrigger value="detailed" className="flex items-center gap-2 rounded-full data-[state=active]:bg-[#1e3269] data-[state=active]:text-white transition px-4 py-2"><List className="h-4 w-4" />Detalle</TabsTrigger>
+          <TabsTrigger value="overview" className="flex items-center gap-2 rounded-full data-[state=active]:bg-[#1e3269] data-[state=active]:text-white transition px-4 py-2"><Eye className="h-4 w-4" />Resumen</TabsTrigger>
+          <TabsTrigger value="analytics" className="flex items-center gap-2 rounded-full data-[state=active]:bg-[#1e3269] data-[state=active]:text-white transition px-4 py-2"><BarChart2 className="h-4 w-4" />Analytics</TabsTrigger>
+          <TabsTrigger value="gantt" className="flex items-center gap-2 rounded-full data-[state=active]:bg-[#1e3269] data-[state=active]:text-white transition px-4 py-2"><Calendar className="h-4 w-4" />Gantt</TabsTrigger>
         </TabsList>
         <TabsContent value="detailed" className="space-y-6">
           <Card className="bg-white shadow-sm border border-gray-200 rounded-2xl">
             <CardHeader>
-              <CardTitle className="text-lg text-gray-800 flex items-center gap-2"><List className="text-[#8cb43a]" />Lista Detallada de Tareas</CardTitle>
+              <CardTitle className="text-lg text-gray-800 flex items-center gap-2"><List className="text-[#1e3269]" />Lista Detallada de Tareas</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="overflow-x-auto">
                 <table className="min-w-full text-sm text-left">
                   <thead>
-                    <tr className="bg-blue-100 text-blue-800">
+                    <tr className="bg-[#1e3269] text-white">
                       <th className="px-4 py-2">Título</th>
                       <th className="px-4 py-2">Responsable</th>
                       <th className="px-4 py-2">Estado</th>
@@ -189,7 +189,7 @@ const DepartamentoFinanzasTareas: React.FC = () => {
                     {filteredTareas.length === 0 && (
                       <tr>
                         <td colSpan={6} className="py-12 text-center text-gray-400 flex flex-col items-center gap-2">
-                          <ListChecks className="h-8 w-8 mb-2 text-[#8cb43a]" />
+                          <ListChecks className="h-8 w-8 mb-2 text-[#1e3269]" />
                           No hay tareas para los filtros seleccionados.
                         </td>
                       </tr>
@@ -203,7 +203,7 @@ const DepartamentoFinanzasTareas: React.FC = () => {
         <TabsContent value="overview" className="space-y-6">
           <Card className="bg-white shadow-sm border border-gray-200 rounded-2xl">
             <CardHeader>
-              <CardTitle className="text-lg text-gray-800 flex items-center gap-2"><ListChecks className="text-[#8cb43a]" />Resumen de Tareas</CardTitle>
+              <CardTitle className="text-lg text-gray-800 flex items-center gap-2"><ListChecks className="text-[#1e3269]" />Resumen de Tareas</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-gray-700 text-lg">Total de tareas: {filteredTareas.length}</div>
@@ -213,7 +213,7 @@ const DepartamentoFinanzasTareas: React.FC = () => {
         <TabsContent value="analytics" className="space-y-6">
           <Card className="bg-white shadow-sm border border-gray-200 rounded-2xl">
             <CardHeader>
-              <CardTitle className="text-lg text-gray-800 flex items-center gap-2"><BarChart2 className="text-[#8cb43a]" />Estado de Tareas</CardTitle>
+              <CardTitle className="text-lg text-gray-800 flex items-center gap-2"><BarChart2 className="text-[#1e3269]" />Estado de Tareas</CardTitle>
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={300}>
@@ -223,7 +223,7 @@ const DepartamentoFinanzasTareas: React.FC = () => {
                   <YAxis />
                   <Tooltip />
                   <Legend />
-                  <Bar dataKey="value" fill="#8cb43a" name="Cantidad" />
+                  <Bar dataKey="value" fill="#1e3269" name="Cantidad" />
                 </ReBarChart>
               </ResponsiveContainer>
             </CardContent>
@@ -232,11 +232,11 @@ const DepartamentoFinanzasTareas: React.FC = () => {
         <TabsContent value="gantt" className="space-y-6">
           <Card className="bg-white shadow-sm border border-gray-200 rounded-2xl relative">
             <CardHeader>
-              <CardTitle className="text-lg text-gray-800 flex items-center gap-2"><Calendar className="text-[#8cb43a]" />Calendario de Gantt</CardTitle>
+              <CardTitle className="text-lg text-gray-800 flex items-center gap-2"><Calendar className="text-[#1e3269]" />Calendario de Gantt</CardTitle>
             </CardHeader>
             <CardContent>
               <GanttCalendar tasks={ganttCalendarTasks} />
-              <Button className="absolute top-6 right-6 bg-[#8cb43a] text-white rounded-full shadow-lg hover:bg-[#7aa32e] transition" size="icon"><Plus className="h-5 w-5" /></Button>
+              <Button className="absolute top-6 right-6 bg-[#1e3269] text-white rounded-full shadow-lg hover:bg-[#1a2b5b] transition" size="icon"><Plus className="h-5 w-5" /></Button>
             </CardContent>
           </Card>
         </TabsContent>

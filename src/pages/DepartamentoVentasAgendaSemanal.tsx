@@ -56,7 +56,34 @@ import {
   Minus,
   MoreHorizontal,
   ExternalLink,
-  List
+  List,
+  ShoppingCart,
+  Handshake,
+  PhoneCall,
+  Mail as MailIcon,
+  Calendar as CalendarIcon2,
+  CheckCircle as CheckCircleIcon,
+  XCircle,
+  AlertTriangle as AlertTriangleIcon,
+  Info,
+  HelpCircle,
+  Settings,
+  UserCheck,
+  UserX,
+  UserPlus,
+  UserMinus,
+  UserCog,
+  UserSearch,
+  CreditCard,
+  Package,
+  Truck,
+  Store,
+  ShoppingBag,
+  Tag,
+  Percent as PercentIcon,
+  TrendingUp as TrendingUpIcon,
+  BarChart4,
+  Search
 } from 'lucide-react';
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -98,7 +125,7 @@ interface AgendaEvent {
   attendees: string[];
   location: string;
   budget: number;
-  category: 'budget' | 'payments' | 'reports' | 'audit' | 'planning' | 'analysis';
+  category: 'prospecting' | 'negotiation' | 'closing' | 'follow_up' | 'training' | 'reporting' | 'client_meeting' | 'product_demo';
   tags: string[];
   notes: string;
 }
@@ -116,192 +143,187 @@ interface WeeklyMetrics {
 
 // Time series data for weekly trends
 const weeklyTrendData = [
-  { week: 'Semana 20', events: 12, completed: 10, critical: 3, meetings: 5, budget: 15000 },
-  { week: 'Semana 21', events: 15, completed: 13, critical: 4, meetings: 6, budget: 18000 },
-  { week: 'Semana 22', events: 14, completed: 12, critical: 2, meetings: 7, budget: 16000 },
-  { week: 'Semana 23', events: 16, completed: 14, critical: 5, meetings: 8, budget: 20000 },
-  { week: 'Semana 24', events: 18, completed: 15, critical: 3, meetings: 9, budget: 22000 },
-  { week: 'Semana 25', events: 20, completed: 18, critical: 4, meetings: 10, budget: 25000 }
+  { week: 'Semana 20', events: 18, completed: 16, critical: 6, meetings: 8, budget: 25000 },
+  { week: 'Semana 21', events: 20, completed: 18, critical: 7, meetings: 9, budget: 28000 },
+  { week: 'Semana 22', events: 19, completed: 17, critical: 5, meetings: 10, budget: 26000 },
+  { week: 'Semana 23', events: 22, completed: 20, critical: 8, meetings: 11, budget: 32000 },
+  { week: 'Semana 24', events: 24, completed: 22, critical: 6, meetings: 12, budget: 35000 },
+  { week: 'Semana 25', events: 26, completed: 24, critical: 7, meetings: 13, budget: 38000 }
 ];
 
 // Event type distribution
 const eventTypeData = [
-  { name: 'Reuniones', value: 9, fill: '#1e3269' },
-  { name: 'Tareas Críticas', value: 3, fill: '#fbbf24' },
-  { name: 'Deadlines', value: 2, fill: '#ef4444' },
-  { name: 'Revisiones', value: 3, fill: '#eab308' },
-  { name: 'Presentaciones', value: 1, fill: '#8b5cf6' }
+  { name: 'Reuniones', value: 13, fill: '#1e3269' },
+  { name: 'Tareas Críticas', value: 7, fill: '#fbbf24' },
+  { name: 'Deadlines', value: 5, fill: '#ef4444' },
+  { name: 'Revisiones', value: 6, fill: '#f59e0b' },
+  { name: 'Presentaciones', value: 4, fill: '#8b5cf6' }
 ];
 
 // Daily workload distribution
 const dailyWorkloadData = [
-  { day: 'Lunes', events: 4, hours: 6.5, critical: 1 },
-  { day: 'Martes', events: 3, hours: 5.0, critical: 1 },
-  { day: 'Miércoles', events: 5, hours: 7.5, critical: 2 },
-  { day: 'Jueves', events: 4, hours: 6.0, critical: 1 },
-  { day: 'Viernes', events: 2, hours: 4.0, critical: 0 }
+  { day: 'Lunes', events: 7, hours: 8.0, critical: 3 },
+  { day: 'Martes', events: 6, hours: 7.5, critical: 2 },
+  { day: 'Miércoles', events: 8, hours: 8.5, critical: 3 },
+  { day: 'Jueves', events: 7, hours: 8.0, critical: 2 },
+  { day: 'Viernes', events: 5, hours: 6.5, critical: 1 }
 ];
 
 // Team performance data
 const teamPerformanceData = [
-  { member: 'Ana López', events: 8, completed: 7, efficiency: 88, critical: 2 },
-  { member: 'Carlos Pérez', events: 6, completed: 5, efficiency: 83, critical: 1 },
-  { member: 'María Gómez', events: 4, completed: 4, efficiency: 100, critical: 0 },
-  { member: 'Roberto Silva', events: 5, completed: 4, efficiency: 80, critical: 1 }
+  { member: 'Carlos Ramírez', events: 14, completed: 13, efficiency: 93, critical: 5 },
+  { member: 'Ana Martínez', events: 12, completed: 11, efficiency: 92, critical: 4 },
+  { member: 'Luis González', events: 10, completed: 9, efficiency: 90, critical: 3 },
+  { member: 'María Rodríguez', events: 11, completed: 10, efficiency: 91, critical: 4 }
 ];
 
 // Sample agenda data
 const agendaData: AgendaEvent[] = [
   {
     id: '1',
-    title: 'Reunión de Presupuesto Mensual',
-    description: 'Revisión y aprobación del presupuesto mensual del departamento',
+    title: 'Reunión de Prospectos - Empresa Constructora ABC',
+    description: 'Presentación de propuesta comercial para proyecto residencial',
     day: 'Lunes',
     time: '09:00',
     duration: 90,
-    responsible: 'Ana López',
+    responsible: 'Carlos Ramírez',
     type: 'meeting',
     priority: 'high',
     status: 'scheduled',
-    attendees: ['Ana López', 'Carlos Pérez', 'María Gómez', 'Director Financiero'],
+    attendees: ['Carlos Ramírez', 'Ana Martínez', 'Cliente ABC'],
     location: 'Sala de Conferencias A',
-    budget: 5000,
-    category: 'budget',
-    tags: ['presupuesto', 'mensual', 'aprobación'],
-    notes: 'Preparar presentación con datos actualizados'
+    budget: 15000,
+    category: 'prospecting',
+    tags: ['prospecto', 'propuesta', 'residencial'],
+    notes: 'Preparar presentación con casos de éxito y referencias'
   },
   {
     id: '2',
-    title: 'Pago a Proveedores Críticos',
-    description: 'Procesamiento de pagos a proveedores prioritarios',
+    title: 'Negociación de Contrato - Proyecto Comercial XYZ',
+    description: 'Negociación final de términos y condiciones del contrato',
     day: 'Martes',
-    time: '11:00',
+    time: '14:00',
     duration: 120,
-    responsible: 'Carlos Pérez',
+    responsible: 'Ana Martínez',
     type: 'critical-task',
     priority: 'high',
     status: 'scheduled',
-    attendees: ['Carlos Pérez', 'Ana López'],
-    location: 'Oficina Finanzas',
-    budget: 15000,
-    category: 'payments',
-    tags: ['pagos', 'proveedores', 'crítico'],
-    notes: 'Verificar disponibilidad de fondos antes de procesar'
+    attendees: ['Ana Martínez', 'Carlos Ramírez', 'Cliente XYZ'],
+    location: 'Oficina Cliente',
+    budget: 20000,
+    category: 'negotiation',
+    tags: ['negociación', 'contrato', 'comercial'],
+    notes: 'Revisar puntos clave: precio, plazos, garantías'
   },
   {
     id: '3',
-    title: 'Revisión de Ingresos y Gastos',
-    description: 'Análisis detallado de ingresos y gastos del mes',
+    title: 'Cierre de Venta - Proyecto Industrial',
+    description: 'Firma de contrato y cierre de venta de proyecto industrial',
     day: 'Miércoles',
-    time: '15:00',
+    time: '11:00',
     duration: 60,
-    responsible: 'María Gómez',
-    type: 'review',
-    priority: 'medium',
-    status: 'scheduled',
-    attendees: ['María Gómez', 'Ana López'],
-    location: 'Sala de Reuniones B',
-    budget: 0,
-    category: 'analysis',
-    tags: ['ingresos', 'gastos', 'análisis'],
-    notes: 'Preparar reporte comparativo con meses anteriores'
-  },
-  {
-    id: '4',
-    title: 'Deadline: Reporte Mensual Financiero',
-    description: 'Entrega del reporte financiero mensual a la dirección',
-    day: 'Jueves',
-    time: '10:00',
-    duration: 30,
-    responsible: 'Ana López',
-    type: 'deadline',
-    priority: 'high',
-    status: 'scheduled',
-    attendees: ['Ana López'],
-    location: 'Oficina Ana López',
-    budget: 0,
-    category: 'reports',
-    tags: ['reporte', 'mensual', 'deadline'],
-    notes: 'Finalizar revisión y firmar documento'
-  },
-  {
-    id: '5',
-    title: 'Reunión con Auditoría Externa',
-    description: 'Coordinación de auditoría externa anual',
-    day: 'Viernes',
-    time: '13:00',
-    duration: 120,
-    responsible: 'Carlos Pérez',
+    responsible: 'Luis González',
     type: 'meeting',
     priority: 'high',
     status: 'scheduled',
-    attendees: ['Carlos Pérez', 'Ana López', 'Auditor Externo'],
-    location: 'Sala de Conferencias A',
+    attendees: ['Luis González', 'Cliente Industrial'],
+    location: 'Notaría Central',
     budget: 8000,
-    category: 'audit',
-    tags: ['auditoría', 'externa', 'anual'],
-    notes: 'Preparar documentación requerida'
+    category: 'closing',
+    tags: ['cierre', 'venta', 'industrial'],
+    notes: 'Llevar documentación completa y cheques de garantía'
+  },
+  {
+    id: '4',
+    title: 'Seguimiento Post-Venta - Cliente Premium',
+    description: 'Reunión de seguimiento con cliente premium para próximos proyectos',
+    day: 'Jueves',
+    time: '16:00',
+    duration: 75,
+    responsible: 'María Rodríguez',
+    type: 'meeting',
+    priority: 'medium',
+    status: 'scheduled',
+    attendees: ['María Rodríguez', 'Cliente Premium'],
+    location: 'Restaurante Ejecutivo',
+    budget: 12000,
+    category: 'follow_up',
+    tags: ['seguimiento', 'cliente premium', 'fidelización'],
+    notes: 'Presentar nuevos productos y servicios disponibles'
+  },
+  {
+    id: '5',
+    title: 'Capacitación de Equipo - Nuevas Técnicas de Venta',
+    description: 'Sesión de capacitación sobre nuevas técnicas de venta consultiva',
+    day: 'Viernes',
+    time: '10:00',
+    duration: 180,
+    responsible: 'Carlos Ramírez',
+    type: 'presentation',
+    priority: 'medium',
+    status: 'scheduled',
+    attendees: ['Carlos Ramírez', 'Ana Martínez', 'Luis González', 'María Rodríguez'],
+    location: 'Sala de Capacitación',
+    budget: 10000,
+    category: 'training',
+    tags: ['capacitación', 'técnicas', 'venta consultiva'],
+    notes: 'Preparar material didáctico y casos prácticos'
   },
   {
     id: '6',
-    title: 'Deadline: Pago de Nómina',
-    description: 'Procesamiento y pago de nómina mensual',
-    day: 'Viernes',
-    time: '16:00',
+    title: 'Demo de Producto - Cliente Potencial',
+    description: 'Demostración de nuevas características del producto premium',
+    day: 'Miércoles',
+    time: '15:00',
     duration: 90,
-    responsible: 'María Gómez',
-    type: 'deadline',
-    priority: 'high',
+    responsible: 'Ana Martínez',
+    type: 'presentation',
+    priority: 'medium',
     status: 'scheduled',
-    attendees: ['María Gómez', 'Carlos Pérez'],
-    location: 'Oficina Finanzas',
-    budget: 45000,
-    category: 'payments',
-    tags: ['nómina', 'pago', 'deadline'],
-    notes: 'Verificar cálculos y autorizaciones'
+    attendees: ['Ana Martínez', 'Cliente Potencial'],
+    location: 'Showroom Premium',
+    budget: 15000,
+    category: 'product_demo',
+    tags: ['demo', 'producto', 'premium'],
+    notes: 'Configurar demo con datos reales del cliente'
   },
   {
     id: '7',
-    title: 'Presentación de Resultados Q2',
-    description: 'Presentación de resultados financieros del Q2 a la junta',
-    day: 'Miércoles',
-    time: '10:00',
+    title: 'Revisión de Metas Semanales',
+    description: 'Revisión y ajuste de metas de ventas para la semana',
+    day: 'Martes',
+    time: '17:00',
     duration: 60,
-    responsible: 'Ana López',
-    type: 'presentation',
-    priority: 'high',
+    responsible: 'Carlos Ramírez',
+    type: 'review',
+    priority: 'medium',
     status: 'scheduled',
-    attendees: ['Ana López', 'Junta Directiva'],
-    location: 'Sala de Juntas',
-    budget: 2000,
-    category: 'reports',
-    tags: ['presentación', 'Q2', 'resultados'],
-    notes: 'Preparar slides y documentación de respaldo'
+    attendees: ['Carlos Ramírez', 'Ana Martínez', 'Luis González', 'María Rodríguez'],
+    location: 'Sala de Reuniones',
+    budget: 5000,
+    category: 'reporting',
+    tags: ['metas', 'revisión', 'ventas'],
+    notes: 'Analizar KPIs y ajustar estrategias según resultados'
   },
   {
     id: '8',
-    title: 'Llamada con Proveedor Principal',
-    description: 'Coordinación de términos de pago con proveedor principal',
-    day: 'Martes',
-    time: '14:00',
+    title: 'Deadline - Propuesta Comercial',
+    description: 'Fecha límite para entregar propuesta comercial al cliente',
+    day: 'Jueves',
+    time: '18:00',
     duration: 45,
-    responsible: 'Carlos Pérez',
-    type: 'call',
-    priority: 'medium',
+    responsible: 'Luis González',
+    type: 'deadline',
+    priority: 'high',
     status: 'scheduled',
-    attendees: ['Carlos Pérez', 'Representante Proveedor'],
-    location: 'Videollamada',
-    budget: 0,
-    category: 'payments',
-    tags: ['proveedor', 'términos', 'coordinación'],
-    notes: 'Revisar propuesta de términos antes de la llamada'
+    attendees: ['Luis González'],
+    location: 'Oficina',
+    budget: 8000,
+    category: 'prospecting',
+    tags: ['deadline', 'propuesta', 'comercial'],
+    notes: 'Finalizar cálculos de costos y beneficios'
   }
 ];
-
-const weeks = ['Semana 20', 'Semana 21', 'Semana 22', 'Semana 23', 'Semana 24', 'Semana 25'];
-const responsibles = ['Todos', 'Ana López', 'Carlos Pérez', 'María Gómez', 'Roberto Silva'];
-const categories = ['Todos', 'Presupuesto', 'Pagos', 'Reportes', 'Auditoría', 'Planificación', 'Análisis'];
-const priorities = ['Todos', 'Alta', 'Media', 'Baja'];
 
 const calculateWeeklyMetrics = (events: AgendaEvent[]): WeeklyMetrics => {
   const totalEvents = events.length;
@@ -309,9 +331,11 @@ const calculateWeeklyMetrics = (events: AgendaEvent[]): WeeklyMetrics => {
   const criticalTasks = events.filter(e => e.type === 'critical-task').length;
   const meetingsCount = events.filter(e => e.type === 'meeting').length;
   const deadlinesCount = events.filter(e => e.type === 'deadline').length;
-  const averageDuration = Math.round(events.reduce((acc, e) => acc + e.duration, 0) / totalEvents);
-  const completionRate = Math.round((completedEvents / totalEvents) * 100);
-  const budgetUtilization = Math.round(events.reduce((acc, e) => acc + e.budget, 0) / 1000);
+  const totalDuration = events.reduce((acc, e) => acc + e.duration, 0);
+  const averageDuration = totalEvents > 0 ? Math.round(totalDuration / totalEvents) : 0;
+  const completionRate = totalEvents > 0 ? Math.round((completedEvents / totalEvents) * 100) : 0;
+  const totalBudget = events.reduce((acc, e) => acc + e.budget, 0);
+  const budgetUtilization = Math.round(totalBudget / 1000);
 
   return {
     totalEvents,
@@ -327,39 +351,39 @@ const calculateWeeklyMetrics = (events: AgendaEvent[]): WeeklyMetrics => {
 
 const getTypeColor = (type: string) => {
   switch (type) {
-    case 'meeting': return 'bg-blue-100 text-blue-800 border-blue-200';
-    case 'critical-task': return 'bg-yellow-100 text-yellow-800 border-yellow-200';
-    case 'deadline': return 'bg-red-100 text-red-800 border-red-200';
-    case 'review': return 'bg-green-100 text-green-800 border-green-200';
-    case 'presentation': return 'bg-purple-100 text-purple-800 border-purple-200';
-    case 'call': return 'bg-indigo-100 text-indigo-800 border-indigo-200';
-    default: return 'bg-gray-100 text-gray-800 border-gray-200';
+    case 'meeting': return 'bg-blue-100 text-blue-800';
+    case 'critical-task': return 'bg-yellow-100 text-yellow-800';
+    case 'deadline': return 'bg-red-100 text-red-800';
+    case 'review': return 'bg-green-100 text-green-800';
+    case 'presentation': return 'bg-purple-100 text-purple-800';
+    case 'call': return 'bg-indigo-100 text-indigo-800';
+    default: return 'bg-gray-100 text-gray-800';
   }
 };
 
 const getPriorityColor = (priority: string) => {
   switch (priority) {
-    case 'high': return 'bg-red-100 text-red-800 border-red-200';
-    case 'medium': return 'bg-yellow-100 text-yellow-800 border-yellow-200';
-    case 'low': return 'bg-green-100 text-green-800 border-green-200';
-    default: return 'bg-gray-100 text-gray-800 border-gray-200';
+    case 'high': return 'bg-red-100 text-red-800';
+    case 'medium': return 'bg-yellow-100 text-yellow-800';
+    case 'low': return 'bg-green-100 text-green-800';
+    default: return 'bg-gray-100 text-gray-800';
   }
 };
 
 const getStatusColor = (status: string) => {
   switch (status) {
-    case 'completed': return 'bg-green-100 text-green-800 border-green-200';
-    case 'in-progress': return 'bg-blue-100 text-blue-800 border-blue-200';
-    case 'scheduled': return 'bg-gray-100 text-gray-800 border-gray-200';
-    case 'cancelled': return 'bg-red-100 text-red-800 border-red-200';
-    default: return 'bg-gray-100 text-gray-800 border-gray-200';
+    case 'completed': return 'bg-green-100 text-green-800';
+    case 'in-progress': return 'bg-yellow-100 text-yellow-800';
+    case 'scheduled': return 'bg-blue-100 text-blue-800';
+    case 'cancelled': return 'bg-red-100 text-red-800';
+    default: return 'bg-gray-100 text-gray-800';
   }
 };
 
 const formatCurrency = (amount: number) => {
-  return new Intl.NumberFormat('es-GT', {
+  return new Intl.NumberFormat('es-CO', {
     style: 'currency',
-    currency: 'GTQ',
+    currency: 'COP',
     minimumFractionDigits: 0,
     maximumFractionDigits: 0
   }).format(amount);
@@ -375,9 +399,7 @@ const formatDuration = (minutes: number) => {
   return hours > 0 ? `${hours}h ${mins}m` : `${mins}m`;
 };
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#82CA9D'];
-
-const DepartamentoFinanzasAgendaSemanal: React.FC = () => {
+const DepartamentoVentasAgendaSemanal: React.FC = () => {
   const [selectedWeek, setSelectedWeek] = useState<string>('Semana 24');
   const [selectedResponsible, setSelectedResponsible] = useState<string>('Todos');
   const [selectedCategory, setSelectedCategory] = useState<string>('Todos');
@@ -388,12 +410,14 @@ const DepartamentoFinanzasAgendaSemanal: React.FC = () => {
   const filteredAgenda = agendaData.filter(event => {
     const matchesResponsible = selectedResponsible === 'Todos' || event.responsible === selectedResponsible;
     const matchesCategory = selectedCategory === 'Todos' || 
-      (selectedCategory === 'Presupuesto' && event.category === 'budget') ||
-      (selectedCategory === 'Pagos' && event.category === 'payments') ||
-      (selectedCategory === 'Reportes' && event.category === 'reports') ||
-      (selectedCategory === 'Auditoría' && event.category === 'audit') ||
-      (selectedCategory === 'Planificación' && event.category === 'planning') ||
-      (selectedCategory === 'Análisis' && event.category === 'analysis');
+      (selectedCategory === 'Prospección' && event.category === 'prospecting') ||
+      (selectedCategory === 'Negociación' && event.category === 'negotiation') ||
+      (selectedCategory === 'Cierre' && event.category === 'closing') ||
+      (selectedCategory === 'Seguimiento' && event.category === 'follow_up') ||
+      (selectedCategory === 'Capacitación' && event.category === 'training') ||
+      (selectedCategory === 'Reportes' && event.category === 'reporting') ||
+      (selectedCategory === 'Reunión Cliente' && event.category === 'client_meeting') ||
+      (selectedCategory === 'Demo Producto' && event.category === 'product_demo');
     const matchesPriority = selectedPriority === 'Todos' || 
       (selectedPriority === 'Alta' && event.priority === 'high') ||
       (selectedPriority === 'Media' && event.priority === 'medium') ||
@@ -431,15 +455,15 @@ const DepartamentoFinanzasAgendaSemanal: React.FC = () => {
       value: metrics.criticalTasks,
       icon: AlertTriangle,
       color: 'bg-red-50 border-red-200 text-red-700',
-      trend: '-1 vs semana anterior',
-      trendDirection: 'down'
+      trend: '+1 vs semana anterior',
+      trendDirection: 'up'
     },
     {
       label: 'Tasa de Completación',
       value: `${metrics.completionRate}%`,
       icon: CheckCircle,
       color: 'bg-green-50 border-green-200 text-green-700',
-      trend: '+5% vs semana anterior',
+      trend: '+3% vs semana anterior',
       trendDirection: 'up'
     },
     {
@@ -468,6 +492,10 @@ const DepartamentoFinanzasAgendaSemanal: React.FC = () => {
     }
   ];
 
+  const weeks = ['Semana 20', 'Semana 21', 'Semana 22', 'Semana 23', 'Semana 24', 'Semana 25'];
+  const responsibles = ['Todos', 'Carlos Ramírez', 'Ana Martínez', 'Luis González', 'María Rodríguez'];
+  const categories = ['Todos', 'Prospección', 'Negociación', 'Cierre', 'Seguimiento', 'Capacitación', 'Reportes', 'Reunión Cliente', 'Demo Producto'];
+  const priorities = ['Todos', 'Alta', 'Media', 'Baja'];
   const daysOfWeek = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
 
   return (
@@ -480,20 +508,20 @@ const DepartamentoFinanzasAgendaSemanal: React.FC = () => {
               <div className="p-2 bg-[#1e3269] rounded-lg">
                 <CalendarDays className="text-white h-6 w-6" />
               </div>
-              Finanzas - Agenda Semanal Interna
+              Ventas - Agenda Semanal Interna
             </h1>
-            <p className="text-gray-600">Gestión y seguimiento de actividades semanales del departamento de finanzas</p>
+            <p className="text-gray-600">Gestión y seguimiento de actividades semanales del departamento de ventas</p>
           </div>
           <div className="flex items-center gap-3">
-            <Button variant="outline" size="sm" className="flex items-center gap-2 border-[#1e3269] text-[#1e3269] hover:bg-[#1e3269] hover:text-white">
+            <Button variant="outline" size="sm" className="flex items-center gap-2">
               <DownloadIcon className="h-4 w-4" />
-              Exportar PDF
+              Exportar
             </Button>
-            <Button variant="outline" size="sm" className="flex items-center gap-2 border-[#1e3269] text-[#1e3269] hover:bg-[#1e3269] hover:text-white">
+            <Button variant="outline" size="sm" className="flex items-center gap-2">
               <Printer className="h-4 w-4" />
               Imprimir
             </Button>
-            <Button variant="outline" size="sm" className="flex items-center gap-2 border-[#1e3269] text-[#1e3269] hover:bg-[#1e3269] hover:text-white">
+            <Button variant="outline" size="sm" className="flex items-center gap-2">
               <Share2 className="h-4 w-4" />
               Compartir
             </Button>
@@ -578,7 +606,7 @@ const DepartamentoFinanzasAgendaSemanal: React.FC = () => {
               </Select>
             </div>
             <div className="flex items-center gap-2">
-              <FilterIcon className="text-gray-400 h-4 w-4" />
+              <Search className="text-gray-400 h-4 w-4" />
               <Input
                 placeholder="Buscar eventos..."
                 value={searchTerm}
@@ -599,24 +627,24 @@ const DepartamentoFinanzasAgendaSemanal: React.FC = () => {
       {/* Main Content Tabs */}
       <Tabs value={viewMode} onValueChange={(value) => setViewMode(value as any)} className="space-y-6">
         <TabsList className="grid w-full grid-cols-5">
-          <TabsTrigger value="calendar" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
-            <CalendarIcon className={`h-4 w-4 ${viewMode === 'calendar' ? 'text-white' : 'text-[#1e3269]'}`} />
+          <TabsTrigger value="calendar" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269]`}>
+            <CalendarIcon className="h-4 w-4" />
             Calendario
           </TabsTrigger>
-          <TabsTrigger value="list" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
-            <List className={`h-4 w-4 ${viewMode === 'list' ? 'text-white' : 'text-[#1e3269]'}`} />
+          <TabsTrigger value="list" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269]`}>
+            <List className="h-4 w-4" />
             Lista
           </TabsTrigger>
-          <TabsTrigger value="analytics" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
-            <BarChart3 className={`h-4 w-4 ${viewMode === 'analytics' ? 'text-white' : 'text-[#1e3269]'}`} />
+          <TabsTrigger value="analytics" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269]`}>
+            <BarChart4 className="h-4 w-4" />
             Análisis
           </TabsTrigger>
-          <TabsTrigger value="team" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
-            <UsersIcon className={`h-4 w-4 ${viewMode === 'team' ? 'text-white' : 'text-[#1e3269]'}`} />
+          <TabsTrigger value="team" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269]`}>
+            <UsersIcon className="h-4 w-4" />
             Equipo
           </TabsTrigger>
-          <TabsTrigger value="detailed" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
-            <BarChart2 className={`h-4 w-4 ${viewMode === 'detailed' ? 'text-white' : 'text-[#1e3269]'}`} />
+          <TabsTrigger value="detailed" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269]`}>
+            <BarChart2 className="h-4 w-4" />
             Detalle
           </TabsTrigger>
         </TabsList>
@@ -645,11 +673,11 @@ const DepartamentoFinanzasAgendaSemanal: React.FC = () => {
                           <div
                             key={event.id}
                             className={`p-3 rounded-lg border-l-4 cursor-pointer hover:shadow-md transition-shadow ${
-                              event.type === 'meeting' ? 'bg-blue-50 border-blue-400' :
-                              event.type === 'critical-task' ? 'bg-yellow-50 border-yellow-400' :
-                              event.type === 'deadline' ? 'bg-red-50 border-red-400' :
-                              event.type === 'review' ? 'bg-green-50 border-green-400' :
-                              event.type === 'presentation' ? 'bg-purple-50 border-purple-400' :
+                              event.type === 'meeting' ? 'bg-[#1e3269] bg-opacity-10 border-[#1e3269]' :
+                              event.type === 'critical-task' ? 'bg-[#fbbf24] bg-opacity-20 border-[#fbbf24]' :
+                              event.type === 'deadline' ? 'bg-[#ef4444] bg-opacity-20 border-[#ef4444]' :
+                              event.type === 'review' ? 'bg-[#f59e0b] bg-opacity-20 border-[#f59e0b]' :
+                              event.type === 'presentation' ? 'bg-[#8b5cf6] bg-opacity-20 border-[#8b5cf6]' :
                               'bg-gray-50 border-gray-400'
                             }`}
                           >
@@ -778,7 +806,7 @@ const DepartamentoFinanzasAgendaSemanal: React.FC = () => {
                     <Tooltip />
                     <Legend />
                     <Line type="monotone" dataKey="events" stroke="#1e3269" strokeWidth={2} name="Eventos" />
-                    <Line type="monotone" dataKey="completed" stroke="#3b82f6" strokeWidth={2} name="Completados" />
+                    <Line type="monotone" dataKey="completed" stroke="#fbbf24" strokeWidth={2} name="Completados" />
                     <Line type="monotone" dataKey="critical" stroke="#ef4444" strokeWidth={2} name="Críticos" />
                   </RechartsLineChart>
                 </ResponsiveContainer>
@@ -834,8 +862,8 @@ const DepartamentoFinanzasAgendaSemanal: React.FC = () => {
                   <YAxis yAxisId="right" orientation="right" />
                   <Tooltip />
                   <Legend />
-                  <Bar yAxisId="left" dataKey="events" fill="#1e3269" name="Eventos" />
-                  <Line yAxisId="right" type="monotone" dataKey="hours" stroke="#3b82f6" strokeWidth={2} name="Horas" />
+                  <Bar dataKey="events" fill="#1e3269" name="Eventos" />
+                  <Bar dataKey="hours" fill="#fbbf24" name="Horas" />
                 </ComposedChart>
               </ResponsiveContainer>
             </CardContent>
@@ -861,7 +889,7 @@ const DepartamentoFinanzasAgendaSemanal: React.FC = () => {
                   <Tooltip />
                   <Legend />
                   <Bar yAxisId="left" dataKey="events" fill="#1e3269" name="Eventos" />
-                  <Bar yAxisId="left" dataKey="completed" fill="#3b82f6" name="Completados" />
+                  <Bar yAxisId="left" dataKey="completed" fill="#fbbf24" name="Completados" />
                   <Line yAxisId="right" type="monotone" dataKey="efficiency" stroke="#10b981" strokeWidth={2} name="Eficiencia (%)" />
                 </ComposedChart>
               </ResponsiveContainer>
@@ -947,4 +975,4 @@ const DepartamentoFinanzasAgendaSemanal: React.FC = () => {
   );
 };
 
-export default DepartamentoFinanzasAgendaSemanal; 
+export default DepartamentoVentasAgendaSemanal; 

@@ -136,9 +136,9 @@ const financialTrendData = [
 
 // Category distribution data
 const categoryData = [
-  { name: 'Ventas', value: 45, fill: '#10b981' },
-  { name: 'Servicios', value: 25, fill: '#3b82f6' },
-  { name: 'Nómina', value: 15, fill: '#f59e0b' },
+  { name: 'Ventas', value: 45, fill: '#1e3269' },
+  { name: 'Servicios', value: 25, fill: '#fbbf24' },
+  { name: 'Nómina', value: 15, fill: '#eab308' },
   { name: 'Proveedores', value: 10, fill: '#ef4444' },
   { name: 'Servicios Públicos', value: 3, fill: '#8b5cf6' },
   { name: 'Impuestos', value: 2, fill: '#6b7280' }
@@ -458,7 +458,7 @@ const DepartamentoFinanzasReporteInterno: React.FC = () => {
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div>
             <h1 className="text-3xl font-bold text-gray-800 mb-2 flex items-center gap-3">
-              <div className="p-2 bg-[#8cb43a] rounded-lg">
+              <div className="p-2 bg-[#1e3269] rounded-lg">
                 <DollarSign className="text-white h-6 w-6" />
               </div>
               Finanzas - Reporte Interno
@@ -466,15 +466,15 @@ const DepartamentoFinanzasReporteInterno: React.FC = () => {
             <p className="text-gray-600">Análisis financiero completo y gestión de movimientos del departamento</p>
           </div>
           <div className="flex items-center gap-3">
-            <Button variant="outline" size="sm" className="flex items-center gap-2">
+            <Button variant="outline" size="sm" className="flex items-center gap-2 border-[#1e3269] text-[#1e3269] hover:bg-[#1e3269] hover:text-white">
               <DownloadIcon className="h-4 w-4" />
-              Exportar
+              Exportar PDF
             </Button>
-            <Button variant="outline" size="sm" className="flex items-center gap-2">
+            <Button variant="outline" size="sm" className="flex items-center gap-2 border-[#1e3269] text-[#1e3269] hover:bg-[#1e3269] hover:text-white">
               <Printer className="h-4 w-4" />
               Imprimir
             </Button>
-            <Button variant="outline" size="sm" className="flex items-center gap-2">
+            <Button variant="outline" size="sm" className="flex items-center gap-2 border-[#1e3269] text-[#1e3269] hover:bg-[#1e3269] hover:text-white">
               <Share2 className="h-4 w-4" />
               Compartir
             </Button>
@@ -510,7 +510,7 @@ const DepartamentoFinanzasReporteInterno: React.FC = () => {
       <Card className="bg-white shadow-sm border border-gray-200">
         <CardHeader>
           <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-            <FilterIcon className="text-[#8cb43a]" />
+            <FilterIcon className="text-[#1e3269]" />
             Filtros y Búsqueda
           </CardTitle>
         </CardHeader>
@@ -579,24 +579,24 @@ const DepartamentoFinanzasReporteInterno: React.FC = () => {
       {/* Main Content Tabs */}
       <Tabs value={viewMode} onValueChange={(value) => setViewMode(value as 'overview' | 'trends' | 'analysis' | 'movements' | 'detailed')} className="space-y-6">
         <TabsList className="grid w-full grid-cols-5">
-          <TabsTrigger value="overview" className="flex items-center gap-2">
-            <Eye className="h-4 w-4" />
+          <TabsTrigger value="overview" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
+            <Eye className={`h-4 w-4 ${viewMode === 'overview' ? 'text-white' : 'text-[#1e3269]'}`} />
             Resumen
           </TabsTrigger>
-          <TabsTrigger value="trends" className="flex items-center gap-2">
-            <LineChart className="h-4 w-4" />
+          <TabsTrigger value="trends" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
+            <LineChart className={`h-4 w-4 ${viewMode === 'trends' ? 'text-white' : 'text-[#1e3269]'}`} />
             Tendencias
           </TabsTrigger>
-          <TabsTrigger value="analysis" className="flex items-center gap-2">
-            <BarChart3 className="h-4 w-4" />
+          <TabsTrigger value="analysis" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
+            <BarChart3 className={`h-4 w-4 ${viewMode === 'analysis' ? 'text-white' : 'text-[#1e3269]'}`} />
             Análisis
           </TabsTrigger>
-          <TabsTrigger value="movements" className="flex items-center gap-2">
-            <List className="h-4 w-4" />
+          <TabsTrigger value="movements" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
+            <List className={`h-4 w-4 ${viewMode === 'movements' ? 'text-white' : 'text-[#1e3269]'}`} />
             Movimientos
           </TabsTrigger>
-          <TabsTrigger value="detailed" className="flex items-center gap-2">
-            <BarChart2 className="h-4 w-4" />
+          <TabsTrigger value="detailed" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
+            <BarChart2 className={`h-4 w-4 ${viewMode === 'detailed' ? 'text-white' : 'text-[#1e3269]'}`} />
             Detalle
           </TabsTrigger>
         </TabsList>
@@ -608,7 +608,7 @@ const DepartamentoFinanzasReporteInterno: React.FC = () => {
             <Card className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                  <BarChart4 className="text-[#8cb43a]" />
+                  <BarChart4 className="text-[#1e3269]" />
                   Ingresos vs Egresos
                 </CardTitle>
               </CardHeader>
@@ -620,7 +620,7 @@ const DepartamentoFinanzasReporteInterno: React.FC = () => {
                     <YAxis />
                     <Tooltip formatter={(value) => [formatCurrency(Number(value)), 'Monto']} />
                     <Legend />
-                    <Bar dataKey="income" fill="#10b981" name="Ingresos" />
+                    <Bar dataKey="income" fill="#1e3269" name="Ingresos" />
                     <Bar dataKey="expenses" fill="#ef4444" name="Egresos" />
                   </RechartsBarChart>
                 </ResponsiveContainer>
@@ -631,7 +631,7 @@ const DepartamentoFinanzasReporteInterno: React.FC = () => {
             <Card className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                  <LineChart className="text-[#8cb43a]" />
+                  <LineChart className="text-[#1e3269]" />
                   Flujo de Caja
                 </CardTitle>
               </CardHeader>
@@ -654,7 +654,7 @@ const DepartamentoFinanzasReporteInterno: React.FC = () => {
           <Card className="bg-white shadow-sm border border-gray-200">
             <CardHeader>
               <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                <PieChart className="text-[#8cb43a]" />
+                <PieChart className="text-[#1e3269]" />
                 Distribución por Categoría
               </CardTitle>
             </CardHeader>
@@ -689,7 +689,7 @@ const DepartamentoFinanzasReporteInterno: React.FC = () => {
             <Card className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                  <Target className="text-[#8cb43a]" />
+                  <Target className="text-[#1e3269]" />
                   Presupuesto vs Real
                 </CardTitle>
               </CardHeader>
@@ -702,7 +702,7 @@ const DepartamentoFinanzasReporteInterno: React.FC = () => {
                     <Tooltip formatter={(value) => [formatCurrency(Number(value)), 'Monto']} />
                     <Legend />
                     <Bar dataKey="expenses" fill="#ef4444" name="Gastos Reales" />
-                    <Line type="monotone" dataKey="budget" stroke="#8cb43a" strokeWidth={2} name="Presupuesto" />
+                    <Line type="monotone" dataKey="budget" stroke="#1e3269" strokeWidth={2} name="Presupuesto" />
                   </ComposedChart>
                 </ResponsiveContainer>
               </CardContent>
@@ -712,7 +712,7 @@ const DepartamentoFinanzasReporteInterno: React.FC = () => {
             <Card className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                  <TrendingUp className="text-[#8cb43a]" />
+                  <TrendingUp className="text-[#1e3269]" />
                   Tendencia de Ingresos
                 </CardTitle>
               </CardHeader>
@@ -724,7 +724,7 @@ const DepartamentoFinanzasReporteInterno: React.FC = () => {
                     <YAxis />
                     <Tooltip formatter={(value) => [formatCurrency(Number(value)), 'Ingresos']} />
                     <Legend />
-                    <Area type="monotone" dataKey="income" fill="#10b981" fillOpacity={0.6} stroke="#10b981" strokeWidth={2} name="Ingresos" />
+                    <Area type="monotone" dataKey="income" fill="#1e3269" fillOpacity={0.6} stroke="#1e3269" strokeWidth={2} name="Ingresos" />
                   </RechartsAreaChart>
                 </ResponsiveContainer>
               </CardContent>
@@ -739,7 +739,7 @@ const DepartamentoFinanzasReporteInterno: React.FC = () => {
             <Card className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                  <Calculator className="text-[#8cb43a]" />
+                  <Calculator className="text-[#1e3269]" />
                   Desglose de Gastos
                 </CardTitle>
               </CardHeader>
@@ -761,7 +761,7 @@ const DepartamentoFinanzasReporteInterno: React.FC = () => {
             <Card className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                  <Coins className="text-[#8cb43a]" />
+                  <Coins className="text-[#1e3269]" />
                   Fuentes de Ingresos
                 </CardTitle>
               </CardHeader>
@@ -773,7 +773,7 @@ const DepartamentoFinanzasReporteInterno: React.FC = () => {
                     <YAxis />
                     <Tooltip formatter={(value) => [formatCurrency(Number(value)), 'Monto']} />
                     <Legend />
-                    <Bar dataKey="amount" fill="#10b981" name="Monto" />
+                    <Bar dataKey="amount" fill="#1e3269" name="Monto" />
                   </RechartsBarChart>
                 </ResponsiveContainer>
               </CardContent>
@@ -786,7 +786,7 @@ const DepartamentoFinanzasReporteInterno: React.FC = () => {
           <Card className="bg-white shadow-sm border border-gray-200">
             <CardHeader>
               <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                <List className="text-[#8cb43a]" />
+                <List className="text-[#1e3269]" />
                 Movimientos Financieros
               </CardTitle>
             </CardHeader>
@@ -855,7 +855,7 @@ const DepartamentoFinanzasReporteInterno: React.FC = () => {
           <Card className="bg-white shadow-sm border border-gray-200">
             <CardHeader>
               <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                <BarChart2 className="text-[#8cb43a]" />
+                <BarChart2 className="text-[#1e3269]" />
                 Tabla Detallada de Movimientos
               </CardTitle>
             </CardHeader>

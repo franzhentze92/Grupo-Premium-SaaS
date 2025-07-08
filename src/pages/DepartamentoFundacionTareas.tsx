@@ -1,6 +1,3 @@
-// This file is a duplicate of DepartamentoFinanzasTareas.tsx, adapted for the Operaciones department.
-// ... (rest of the file will be copied and adapted accordingly) ...
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -12,25 +9,29 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import GanttCalendar, { GanttCalendarTask } from '@/components/GanttCalendar';
 import { ResponsiveContainer, BarChart as ReBarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
-const responsables = ['Todos', 'Diego Morales', 'Ana Martínez', 'Roberto Silva'];
+const responsables = ['Todos', 'Ana Rodríguez', 'Carlos Mendoza', 'María López', 'Luis Torres'];
 const estados = ['Todos', 'Completada', 'En Progreso', 'Pendiente'];
 const prioridades = ['Todas', 'Alta', 'Media', 'Baja'];
 
 const tareas = [
-  { id: 1, titulo: 'Supervisión de obra', responsable: 'Diego Morales', estado: 'En Progreso', prioridad: 'Alta', fecha: '2024-06-10', inicio: '2024-06-01', fin: '2024-06-10' },
-  { id: 2, titulo: 'Entrega de materiales', responsable: 'Ana Martínez', estado: 'Pendiente', prioridad: 'Media', fecha: '2024-06-12', inicio: '2024-06-11', fin: '2024-06-12' },
-  { id: 3, titulo: 'Coordinación de equipos', responsable: 'Roberto Silva', estado: 'Completada', prioridad: 'Alta', fecha: '2024-06-08', inicio: '2024-06-05', fin: '2024-06-08' },
-  { id: 4, titulo: 'Inspección de seguridad', responsable: 'Ana Martínez', estado: 'En Progreso', prioridad: 'Alta', fecha: '2024-06-15', inicio: '2024-06-13', fin: '2024-06-15' },
-  { id: 5, titulo: 'Reporte de avance', responsable: 'Diego Morales', estado: 'Pendiente', prioridad: 'Baja', fecha: '2024-06-18', inicio: '2024-06-17', fin: '2024-06-18' },
+  { id: 1, titulo: 'Planificar programa de becas educativas', responsable: 'Ana Rodríguez', estado: 'Completada', prioridad: 'Alta', fecha: '2024-05-10', inicio: '2024-05-01', fin: '2024-05-10' },
+  { id: 2, titulo: 'Coordinación clínica móvil rural', responsable: 'Carlos Mendoza', estado: 'En Progreso', prioridad: 'Alta', fecha: '2024-05-12', inicio: '2024-05-08', fin: '2024-05-12' },
+  { id: 3, titulo: 'Evaluación proyectos de vivienda', responsable: 'María López', estado: 'Pendiente', prioridad: 'Media', fecha: '2024-05-14', inicio: '2024-05-13', fin: '2024-05-14' },
+  { id: 4, titulo: 'Actualizar estrategia de impacto social', responsable: 'Ana Rodríguez', estado: 'En Progreso', prioridad: 'Baja', fecha: '2024-05-15', inicio: '2024-05-12', fin: '2024-05-15' },
+  { id: 5, titulo: 'Preparar reporte para donantes', responsable: 'Luis Torres', estado: 'Pendiente', prioridad: 'Alta', fecha: '2024-05-16', inicio: '2024-05-15', fin: '2024-05-16' },
+  { id: 6, titulo: 'Distribución alimentos programa escolar', responsable: 'Carlos Mendoza', estado: 'En Progreso', prioridad: 'Media', fecha: '2024-05-17', inicio: '2024-05-14', fin: '2024-05-17' },
+  { id: 7, titulo: 'Coordinación servicios sociales', responsable: 'María López', estado: 'Pendiente', prioridad: 'Alta', fecha: '2024-05-18', inicio: '2024-05-16', fin: '2024-05-18' },
+  { id: 8, titulo: 'Revisar presupuesto programas sociales', responsable: 'Luis Torres', estado: 'Completada', prioridad: 'Media', fecha: '2024-05-19', inicio: '2024-05-17', fin: '2024-05-19' },
 ];
 
 const kpiCards = [
-  { label: 'Tareas Totales', value: tareas.length, color: 'info', icon: ListChecks, trend: '+8% este mes', trendDir: 'up', secondary: 'Total registradas' },
-  { label: 'Completadas', value: tareas.filter(t => t.estado === 'Completada').length, color: 'success', icon: TrendingUp, trend: '+2', trendDir: 'up', secondary: 'Finalizadas' },
+  { label: 'Tareas Totales', value: tareas.length, color: 'info', icon: ListChecks, trend: '+2 este mes', trendDir: 'up', secondary: 'Total registradas' },
+  { label: 'Completadas', value: tareas.filter(t => t.estado === 'Completada').length, color: 'success', icon: TrendingUp, trend: '+1', trendDir: 'up', secondary: 'Finalizadas' },
   { label: 'En Progreso', value: tareas.filter(t => t.estado === 'En Progreso').length, color: 'warning', icon: LineChart, trend: '+1', trendDir: 'up', secondary: 'Actualmente activas' },
-  { label: 'Pendientes', value: tareas.filter(t => t.estado === 'Pendiente').length, color: 'secondary', icon: BarChart2, trend: '-1', trendDir: 'down', secondary: 'Por iniciar' },
+  { label: 'Pendientes', value: tareas.filter(t => t.estado === 'Pendiente').length, color: 'secondary', icon: BarChart2, trend: '0', trendDir: 'neutral', secondary: 'Por iniciar' },
 ];
 
+// Map tareas to GanttCalendarTask format
 const ganttCalendarTasks: GanttCalendarTask[] = tareas.map(t => ({
   id: t.id.toString(),
   name: t.titulo,
@@ -39,13 +40,13 @@ const ganttCalendarTasks: GanttCalendarTask[] = tareas.map(t => ({
   type: 'task',
   progress: t.estado === 'Completada' ? 100 : t.estado === 'En Progreso' ? 50 : 0,
   status: t.estado === 'Completada' ? 'Completed' : t.estado === 'En Progreso' ? 'In Progress' : 'Pending',
-  category: 'Operaciones',
+  category: 'Fundación',
   assignedTo: t.responsable,
   priority: t.prioridad,
   description: t.titulo,
 }));
 
-const DepartamentoOperacionesTareas: React.FC = () => {
+const DepartamentoFundacionTareas: React.FC = () => {
   const [responsable, setResponsable] = useState<string>('Todos');
   const [estado, setEstado] = useState<string>('Todos');
   const [prioridad, setPrioridad] = useState<string>('Todas');
@@ -57,6 +58,7 @@ const DepartamentoOperacionesTareas: React.FC = () => {
     (prioridad === 'Todas' || t.prioridad === prioridad)
   );
 
+  // Example analytics data for bar chart
   const analyticsData = [
     { name: 'Completadas', value: tareas.filter(t => t.estado === 'Completada').length },
     { name: 'En Progreso', value: tareas.filter(t => t.estado === 'En Progreso').length },
@@ -68,9 +70,9 @@ const DepartamentoOperacionesTareas: React.FC = () => {
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-2">
         <h1 className="text-3xl font-bold text-gray-800 mb-2 flex items-center gap-3">
           <span className="p-2 bg-[#1e3269] rounded-lg"><ListChecks className="text-white h-6 w-6" /></span>
-          Operaciones - Tareas
+          Fundación - Tareas
         </h1>
-        <p className="text-gray-600">Gestión y seguimiento de tareas del departamento de operaciones</p>
+        <p className="text-gray-600">Gestión y seguimiento de tareas del departamento de fundación</p>
       </div>
       {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -124,7 +126,7 @@ const DepartamentoOperacionesTareas: React.FC = () => {
             </Select>
           </div>
           <div className="flex items-center gap-2">
-            <Star className="text-yellow-400 h-4 w-4" />
+            <Star className="text-gold-400 h-4 w-4" />
             <Select value={prioridad} onValueChange={setPrioridad}>
               <SelectTrigger className="w-36"><SelectValue placeholder="Prioridad" /></SelectTrigger>
               <SelectContent>
@@ -197,18 +199,42 @@ const DepartamentoOperacionesTareas: React.FC = () => {
           </Card>
         </TabsContent>
         <TabsContent value="overview" className="space-y-6">
-          {/* Overview content */}
-        </TabsContent>
-        <TabsContent value="analytics" className="space-y-6">
-          {/* Analytics content */}
-        </TabsContent>
-        <TabsContent value="gantt" className="space-y-6">
           <Card className="bg-white shadow-sm border border-gray-200 rounded-2xl">
             <CardHeader>
-              <CardTitle className="text-lg text-gray-800 flex items-center gap-2"><Calendar className="text-[#1e3269]" />Gantt</CardTitle>
+              <CardTitle className="text-lg text-gray-800 flex items-center gap-2"><ListChecks className="text-[#1e3269]" />Resumen de Tareas</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-gray-700 text-lg">Total de tareas: {filteredTareas.length}</div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+        <TabsContent value="analytics" className="space-y-6">
+          <Card className="bg-white shadow-sm border border-gray-200 rounded-2xl">
+            <CardHeader>
+              <CardTitle className="text-lg text-gray-800 flex items-center gap-2"><BarChart2 className="text-[#1e3269]" />Estado de Tareas</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ResponsiveContainer width="100%" height={300}>
+                <ReBarChart data={analyticsData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="value" fill="#fbbf24" name="Cantidad" />
+                </ReBarChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </Card>
+        </TabsContent>
+        <TabsContent value="gantt" className="space-y-6">
+          <Card className="bg-white shadow-sm border border-gray-200 rounded-2xl relative">
+            <CardHeader>
+              <CardTitle className="text-lg text-gray-800 flex items-center gap-2"><Calendar className="text-[#1e3269]" />Calendario de Gantt</CardTitle>
             </CardHeader>
             <CardContent>
               <GanttCalendar tasks={ganttCalendarTasks} />
+              <Button className="absolute top-6 right-6 bg-[#1e3269] text-gold-400 rounded-full shadow-lg hover:bg-[#16224a] transition" size="icon"><Plus className="h-5 w-5" /></Button>
             </CardContent>
           </Card>
         </TabsContent>
@@ -217,4 +243,4 @@ const DepartamentoOperacionesTareas: React.FC = () => {
   );
 };
 
-export default DepartamentoOperacionesTareas; 
+export default DepartamentoFundacionTareas; 

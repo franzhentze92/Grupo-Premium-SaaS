@@ -59,17 +59,17 @@ const LoginForm = () => {
   };
 
   return (
-    <Card className="w-full max-w-md mx-auto">
+    <Card className="w-full max-w-md mx-auto border-2 border-[#1e3269] shadow-lg">
       <CardHeader>
         <div className="flex justify-center mb-2">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-          </svg>
+          <div className="bg-[#1e3269] rounded p-1 flex items-center justify-center" style={{height: 40, width: 40}}>
+            <img src="/grupo-premium-logo.gif" alt="Grupo Premium Logo" className="h-8 w-8 object-contain" />
+          </div>
         </div>
-        <CardTitle className="text-center text-2xl font-bold text-primary">
+        <CardTitle className="text-center text-2xl font-bold text-[#1e3269]">
           Premium Desarrollo Inmobiliario
         </CardTitle>
-        <CardDescription className="text-center">
+        <CardDescription className="text-center text-[#1e3269] opacity-70">
           Sistema de Monitoreo Interno
         </CardDescription>
       </CardHeader>
@@ -78,7 +78,7 @@ const LoginForm = () => {
           <form onSubmit={handleForgotPassword}>
             <div className="space-y-4">
               <div className="space-y-2">
-                <label htmlFor="reset-email" className="text-sm font-medium">
+                <label htmlFor="reset-email" className="text-sm font-medium text-[#1e3269]">
                   Correo Electrónico
                 </label>
                 <Input
@@ -88,17 +88,18 @@ const LoginForm = () => {
                   value={resetEmail}
                   onChange={(e) => setResetEmail(e.target.value)}
                   required
+                  className="bg-white border border-[#1e3269] text-[#1e3269] placeholder:text-[#b3b8c5] focus:border-[#fbbf24] focus:ring-[#fbbf24]"
                 />
               </div>
               {error && <p className="text-sm text-red-500">{error}</p>}
-              {message && <p className="text-sm text-primary">{message}</p>}
-              <Button type="submit" className="w-full bg-primary hover:bg-primary/90">
+              {message && <p className="text-sm text-[#1e3269]">{message}</p>}
+              <Button type="submit" className="w-full bg-[#1e3269] text-white hover:bg-[#fbbf24] hover:text-[#1e3269]">
                 Enviar Enlace de Restablecimiento
               </Button>
               <Button 
                 type="button" 
                 variant="outline" 
-                className="w-full" 
+                className="w-full border-[#1e3269] text-[#1e3269] hover:bg-[#fbbf24] hover:text-[#1e3269]" 
                 onClick={() => setShowForgotPassword(false)}
               >
                 Volver a Iniciar Sesión
@@ -109,7 +110,7 @@ const LoginForm = () => {
           <form onSubmit={handleLogin}>
             <div className="space-y-4">
               <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-medium">
+                <label htmlFor="email" className="text-sm font-medium text-[#1e3269]">
                   Correo Electrónico
                 </label>
                 <Input
@@ -119,10 +120,11 @@ const LoginForm = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
+                  className="bg-white border border-[#1e3269] text-[#1e3269] placeholder:text-[#b3b8c5] focus:border-[#fbbf24] focus:ring-[#fbbf24]"
                 />
               </div>
               <div className="space-y-2">
-                <label htmlFor="password" className="text-sm font-medium">
+                <label htmlFor="password" className="text-sm font-medium text-[#1e3269]">
                   Contraseña
                 </label>
                 <Input
@@ -132,16 +134,17 @@ const LoginForm = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  className="bg-white border border-[#1e3269] text-[#1e3269] placeholder:text-[#b3b8c5] focus:border-[#fbbf24] focus:ring-[#fbbf24]"
                 />
               </div>
               {error && <p className="text-sm text-red-500">{error}</p>}
-              <Button type="submit" className="w-full bg-primary hover:bg-primary/90">
+              <Button type="submit" className="w-full bg-[#1e3269] text-white hover:bg-[#fbbf24] hover:text-[#1e3269]">
                 Iniciar Sesión
               </Button>
               <Button 
                 type="button" 
                 variant="outline" 
-                className="w-full" 
+                className="w-full border-[#1e3269] text-[#1e3269] hover:bg-[#fbbf24] hover:text-[#1e3269]" 
                 onClick={handleGoogleLogin}
               >
                 Iniciar Sesión con Google
@@ -149,12 +152,12 @@ const LoginForm = () => {
               <Button 
                 type="button" 
                 variant="link" 
-                className="w-full text-primary" 
+                className="w-full text-[#1e3269] hover:text-[#fbbf24]" 
                 onClick={handleDemoLogin}
               >
                 Usar Credenciales Demo
               </Button>
-              <div className="text-sm text-center text-gray-500 mt-2">
+              <div className="text-sm text-center text-[#1e3269] mt-2">
                 <strong>Demo:</strong> demo@premiumdesarrollo.com / demo123
               </div>
             </div>
@@ -165,7 +168,7 @@ const LoginForm = () => {
         <CardFooter>
           <Button 
             variant="link" 
-            className="w-full" 
+            className="w-full text-[#1e3269] hover:text-[#fbbf24]" 
             onClick={() => setShowForgotPassword(true)}
           >
             ¿Olvidó su contraseña?

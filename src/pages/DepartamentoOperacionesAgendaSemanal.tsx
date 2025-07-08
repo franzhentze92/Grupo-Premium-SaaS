@@ -137,10 +137,10 @@ const weeklyTrendData = [
 
 // Event type distribution
 const eventTypeData = [
-  { name: 'Supervisiones', value: 8, fill: '#3b82f6' },
-  { name: 'Mantenimiento', value: 5, fill: '#f59e0b' },
+  { name: 'Supervisiones', value: 8, fill: '#1e3269' },
+  { name: 'Mantenimiento', value: 5, fill: '#fbbf24' },
   { name: 'Inspecciones', value: 4, fill: '#ef4444' },
-  { name: 'Coordinación', value: 3, fill: '#10b981' },
+  { name: 'Coordinación', value: 3, fill: '#eab308' },
   { name: 'Capacitación', value: 2, fill: '#8b5cf6' },
   { name: 'Reuniones', value: 3, fill: '#6b7280' }
 ];
@@ -427,7 +427,7 @@ const DepartamentoOperacionesAgendaSemanal: React.FC = () => {
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div>
             <h1 className="text-3xl font-bold text-gray-800 mb-2 flex items-center gap-3">
-              <div className="p-2 bg-[#8cb43a] rounded-lg">
+              <div className="p-2 bg-[#1e3269] rounded-lg">
                 <CalendarDays className="text-white h-6 w-6" />
               </div>
               Operaciones - Agenda Semanal Interna
@@ -435,15 +435,15 @@ const DepartamentoOperacionesAgendaSemanal: React.FC = () => {
             <p className="text-gray-600">Gestión y seguimiento de actividades semanales del departamento de operaciones</p>
           </div>
           <div className="flex items-center gap-3">
-            <Button variant="outline" size="sm" className="flex items-center gap-2">
+            <Button variant="outline" size="sm" className="flex items-center gap-2 border-[#1e3269] text-[#1e3269] hover:bg-[#1e3269] hover:text-white">
               <DownloadIcon className="h-4 w-4" />
-              Exportar
+              Exportar PDF
             </Button>
-            <Button variant="outline" size="sm" className="flex items-center gap-2">
+            <Button variant="outline" size="sm" className="flex items-center gap-2 border-[#1e3269] text-[#1e3269] hover:bg-[#1e3269] hover:text-white">
               <Printer className="h-4 w-4" />
               Imprimir
             </Button>
-            <Button variant="outline" size="sm" className="flex items-center gap-2">
+            <Button variant="outline" size="sm" className="flex items-center gap-2 border-[#1e3269] text-[#1e3269] hover:bg-[#1e3269] hover:text-white">
               <Share2 className="h-4 w-4" />
               Compartir
             </Button>
@@ -479,7 +479,7 @@ const DepartamentoOperacionesAgendaSemanal: React.FC = () => {
       <Card className="bg-white shadow-sm border border-gray-200">
         <CardHeader>
           <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-            <FilterIcon className="text-[#8cb43a]" />
+            <FilterIcon className="text-[#1e3269]" />
             Filtros y Búsqueda
           </CardTitle>
         </CardHeader>
@@ -549,24 +549,24 @@ const DepartamentoOperacionesAgendaSemanal: React.FC = () => {
       {/* Main Content Tabs */}
       <Tabs value={viewMode} onValueChange={(value) => setViewMode(value as any)} className="space-y-6">
         <TabsList className="grid w-full grid-cols-5">
-          <TabsTrigger value="calendar" className="flex items-center gap-2">
-            <CalendarIcon className="h-4 w-4" />
+          <TabsTrigger value="calendar" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
+            <CalendarIcon className={`h-4 w-4 ${viewMode === 'calendar' ? 'text-white' : 'text-[#1e3269]'}`} />
             Calendario
           </TabsTrigger>
-          <TabsTrigger value="list" className="flex items-center gap-2">
-            <List className="h-4 w-4" />
+          <TabsTrigger value="list" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
+            <List className={`h-4 w-4 ${viewMode === 'list' ? 'text-white' : 'text-[#1e3269]'}`} />
             Lista
           </TabsTrigger>
-          <TabsTrigger value="analytics" className="flex items-center gap-2">
-            <BarChart3 className="h-4 w-4" />
+          <TabsTrigger value="analytics" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
+            <BarChart3 className={`h-4 w-4 ${viewMode === 'analytics' ? 'text-white' : 'text-[#1e3269]'}`} />
             Análisis
           </TabsTrigger>
-          <TabsTrigger value="team" className="flex items-center gap-2">
-            <UsersIcon className="h-4 w-4" />
+          <TabsTrigger value="team" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
+            <UsersIcon className={`h-4 w-4 ${viewMode === 'team' ? 'text-white' : 'text-[#1e3269]'}`} />
             Equipo
           </TabsTrigger>
-          <TabsTrigger value="detailed" className="flex items-center gap-2">
-            <BarChart2 className="h-4 w-4" />
+          <TabsTrigger value="detailed" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
+            <BarChart2 className={`h-4 w-4 ${viewMode === 'detailed' ? 'text-white' : 'text-[#1e3269]'}`} />
             Detalle
           </TabsTrigger>
         </TabsList>

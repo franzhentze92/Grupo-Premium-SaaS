@@ -101,7 +101,7 @@ const CronogramaActividadesDepartamento: React.FC = () => {
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div>
             <h1 className="text-3xl font-bold text-gray-800 mb-2 flex items-center gap-3">
-              <div className="p-2 bg-[#8cb43a] rounded-lg">
+              <div className="p-2 bg-[#1e3269] rounded-lg">
                 <Users className="text-white h-6 w-6" />
               </div>
               Actividades por Departamento
@@ -113,18 +113,18 @@ const CronogramaActividadesDepartamento: React.FC = () => {
               variant={viewMode === 'grouped' ? 'default' : 'outline'}
               size="sm"
               onClick={() => setViewMode('grouped')}
-              className="flex items-center gap-2"
+              className={`flex items-center gap-2 ${viewMode === 'grouped' ? 'bg-[#1e3269] text-white border-[#1e3269]' : 'border-[#1e3269] text-[#1e3269] bg-white'}`}
             >
-              <Users className="h-4 w-4" />
+              <Users className={`h-4 w-4 ${viewMode === 'grouped' ? 'text-white' : 'text-[#1e3269]'}`} />
               Agrupado
             </Button>
             <Button
               variant={viewMode === 'list' ? 'default' : 'outline'}
               size="sm"
               onClick={() => setViewMode('list')}
-              className="flex items-center gap-2"
+              className={`flex items-center gap-2 ${viewMode === 'list' ? 'bg-[#1e3269] text-white border-[#1e3269]' : 'border-[#1e3269] text-[#1e3269] bg-white'}`}
             >
-              <List className="h-4 w-4" />
+              <List className={`h-4 w-4 ${viewMode === 'list' ? 'text-white' : 'text-[#1e3269]'}`} />
               Lista
             </Button>
           </div>
@@ -135,9 +135,9 @@ const CronogramaActividadesDepartamento: React.FC = () => {
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-semibold text-gray-800">Progreso General</h2>
-          <span className="text-2xl font-bold text-[#8cb43a]">{Math.round(progressPercentage)}%</span>
+          <span className="text-2xl font-bold text-[#1e3269]">{Math.round(progressPercentage)}%</span>
         </div>
-        <Progress value={progressPercentage} className="h-3" />
+        <Progress value={progressPercentage} className="h-3 bg-[#e5e7eb]" />
         <div className="flex justify-between text-sm text-gray-600 mt-2">
           <span>{completedActivities} de {totalActivities} actividades completadas</span>
           <span>{totalActivities - completedActivities} pendientes</span>
@@ -174,7 +174,7 @@ const CronogramaActividadesDepartamento: React.FC = () => {
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <div className="flex flex-col lg:flex-row gap-4 items-center">
           <div className="flex items-center gap-2">
-            <Filter className="text-[#8cb43a] h-5 w-5" />
+            <Filter className="text-[#1e3269] h-5 w-5" />
             <span className="text-sm font-medium text-gray-700">Filtros:</span>
           </div>
           <Select value={departamentoFilter} onValueChange={v => setDepartamentoFilter(v === 'all' ? undefined : v)}>
@@ -200,7 +200,7 @@ const CronogramaActividadesDepartamento: React.FC = () => {
               variant="outline" 
               size="sm"
               onClick={() => { setDepartamentoFilter(undefined); setEstadoFilter(undefined); }}
-              className="text-[#8cb43a] border-[#8cb43a] hover:bg-[#8cb43a] hover:text-white"
+              className="text-[#1e3269] border-[#1e3269] hover:bg-[#1e3269] hover:text-white"
             >
               Limpiar Filtros
             </Button>
@@ -211,11 +211,11 @@ const CronogramaActividadesDepartamento: React.FC = () => {
       {/* Content */}
       <div className="space-y-6">
         {Object.keys(grouped).length === 0 && (
-          <Card className="bg-blue-50 border-blue-200">
+          <Card className="bg-[#e3eafc] border-[#1e3269]">
             <CardContent className="py-12 text-center">
-              <AlertCircle className="h-12 w-12 text-blue-400 mx-auto mb-4" />
-              <p className="text-blue-600 font-medium">No hay actividades que coincidan con los filtros seleccionados.</p>
-              <p className="text-blue-500 text-sm mt-2">Intenta ajustar los filtros para ver más resultados.</p>
+              <AlertCircle className="h-12 w-12 text-[#1e3269] mx-auto mb-4" />
+              <p className="text-[#1e3269] font-medium">No hay actividades que coincidan con los filtros seleccionados.</p>
+              <p className="text-[#1e3269] text-sm mt-2">Intenta ajustar los filtros para ver más resultados.</p>
             </CardContent>
           </Card>
         )}
@@ -225,17 +225,17 @@ const CronogramaActividadesDepartamento: React.FC = () => {
           Object.entries(grouped).map(([dep, acts]) => {
             const deptProgress = acts.length > 0 ? (acts.filter(a => a.estado === 'Completada').length / acts.length) * 100 : 0;
             return (
-              <Card key={dep} className="border-l-4 border-[#8cb43a] bg-white shadow-sm hover:shadow-md transition-all duration-200">
+              <Card key={dep} className="border-l-4 border-[#1e3269] bg-white shadow-sm hover:shadow-md transition-all duration-200">
                 <CardHeader className="pb-4">
                   <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                     <div className="flex items-center gap-3">
-                      <div className="p-2 bg-[#8cb43a] rounded-lg">
+                      <div className="p-2 bg-[#1e3269] rounded-lg">
                         <Users className="text-white h-5 w-5" />
                       </div>
                       <div>
                         <CardTitle className="text-xl text-gray-800">{dep}</CardTitle>
                         <div className="flex items-center gap-4 mt-1">
-                          <Badge variant="outline" className="text-[#8cb43a] border-[#8cb43a]">
+                          <Badge variant="outline" className="text-[#1e3269] border-[#1e3269]">
                             {acts.length} actividades
                           </Badge>
                           <span className="text-sm text-gray-600">
@@ -246,10 +246,10 @@ const CronogramaActividadesDepartamento: React.FC = () => {
                     </div>
                     <div className="flex items-center gap-4">
                       <div className="text-right">
-                        <div className="text-2xl font-bold text-[#8cb43a]">{Math.round(deptProgress)}%</div>
+                        <div className="text-2xl font-bold text-[#1e3269]">{Math.round(deptProgress)}%</div>
                         <div className="text-sm text-gray-600">Progreso</div>
                       </div>
-                      <Progress value={deptProgress} className="w-24 h-2" />
+                      <Progress value={deptProgress} className="w-24 h-2 bg-[#e5e7eb]" />
                     </div>
                   </div>
                 </CardHeader>

@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Outlet } from 'react-router-dom';
 import Sidebar from '@/components/Sidebar';
 import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Bell } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useMobile } from '@/hooks/use-mobile';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
 
 const AppLayout: React.FC = () => {
   const navigate = useNavigate();
-  const { user, loading } = useAuth();
+  const { user, loading, logout } = useAuth();
   const isMobile = useMobile();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
@@ -60,22 +62,49 @@ const AppLayout: React.FC = () => {
 
       {/* Main content */}
       <div className="flex-1 flex flex-col">
-        {/* Mobile header */}
-        {isMobile && (
-          <header className="sticky top-0 z-30 flex items-center justify-between p-4 bg-white border-b border-gray-200">
-            <div className="flex items-center">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={toggleSidebar}
-                className="mr-2"
-              >
-                <Menu size={20} />
-              </Button>
-              <h1 className="text-lg font-semibold">Grupo Premium</h1>
-            </div>
-          </header>
-        )}
+        {/* Top bar (desktop & mobile) */}
+        <header className="sticky top-0 z-30 flex items-center justify-end p-4 bg-white border-b border-gray-200">
+          <div className="flex items-center gap-4">
+            <button className="relative p-2 rounded-full hover:bg-gray-100 transition-colors focus:outline-none">
+              <Bell className="h-5 w-5 text-gray-500" />
+              {/* Notification badge (hidden for now) */}
+              <span className="sr-only">Notificaciones</span>
+            </button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <span className="cursor-pointer">
+                  <Avatar size="sm">
+                    <AvatarFallback>
+                      {user?.name
+                        ? user.name.split(' ').map((n: string) => n[0]).join('').toUpperCase().slice(0, 2)
+                        : user?.email
+                          ? user.email[0].toUpperCase()
+                          : '?'}
+                    </AvatarFallback>
+                  </Avatar>
+                </span>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuLabel className="flex flex-col">
+                  <span className="font-semibold text-gray-800">{user?.name || user?.email || 'Usuario'}</span>
+                  {user?.email && user?.name && <span className="text-xs text-gray-500">{user.email}</span>}
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => { /* TODO: Open profile settings */ }}>
+                  Configuración de Perfil
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => { 
+  if (typeof logout === 'function') { 
+    logout(); 
+  }
+  navigate('/login', { replace: true });
+}}>
+                  Cerrar Sesión
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </header>
 
         {/* Page content */}
         <main className="flex-1 overflow-y-auto p-6">

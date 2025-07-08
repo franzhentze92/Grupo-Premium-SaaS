@@ -162,10 +162,10 @@ const weeklyTrendData = [
 
 // Event type distribution
 const eventTypeData = [
-  { name: 'Reuniones', value: 12, fill: '#3b82f6' },
-  { name: 'Tareas Críticas', value: 6, fill: '#f59e0b' },
+  { name: 'Reuniones', value: 12, fill: '#1e3269' },
+  { name: 'Tareas Críticas', value: 6, fill: '#fbbf24' },
   { name: 'Deadlines', value: 4, fill: '#ef4444' },
-  { name: 'Revisiones', value: 5, fill: '#10b981' },
+  { name: 'Revisiones', value: 5, fill: '#f59e0b' },
   { name: 'Presentaciones', value: 3, fill: '#8b5cf6' }
 ];
 
@@ -514,7 +514,7 @@ const DepartamentoFundacionAgendaSemanal: React.FC = () => {
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div>
             <h1 className="text-3xl font-bold text-gray-800 mb-2 flex items-center gap-3">
-              <div className="p-2 bg-[#8cb43a] rounded-lg">
+              <div className="p-2 bg-[#1e3269] rounded-lg">
                 <CalendarDays className="text-white h-6 w-6" />
               </div>
               Fundación - Agenda Semanal Interna
@@ -566,7 +566,7 @@ const DepartamentoFundacionAgendaSemanal: React.FC = () => {
       <Card className="bg-white shadow-sm border border-gray-200">
         <CardHeader>
           <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-            <FilterIcon className="text-[#8cb43a]" />
+            <FilterIcon className="text-[#1e3269]" />
             Filtros y Búsqueda
           </CardTitle>
         </CardHeader>
@@ -636,23 +636,23 @@ const DepartamentoFundacionAgendaSemanal: React.FC = () => {
       {/* Main Content Tabs */}
       <Tabs value={viewMode} onValueChange={(value) => setViewMode(value as any)} className="space-y-6">
         <TabsList className="grid w-full grid-cols-5">
-          <TabsTrigger value="calendar" className="flex items-center gap-2">
+          <TabsTrigger value="calendar" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269]`}>
             <CalendarIcon className="h-4 w-4" />
             Calendario
           </TabsTrigger>
-          <TabsTrigger value="list" className="flex items-center gap-2">
+          <TabsTrigger value="list" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269]`}>
             <List className="h-4 w-4" />
             Lista
           </TabsTrigger>
-          <TabsTrigger value="analytics" className="flex items-center gap-2">
+          <TabsTrigger value="analytics" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269]`}>
             <BarChart3 className="h-4 w-4" />
             Análisis
           </TabsTrigger>
-          <TabsTrigger value="team" className="flex items-center gap-2">
+          <TabsTrigger value="team" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269]`}>
             <UsersIcon className="h-4 w-4" />
             Equipo
           </TabsTrigger>
-          <TabsTrigger value="detailed" className="flex items-center gap-2">
+          <TabsTrigger value="detailed" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269]`}>
             <BarChart2 className="h-4 w-4" />
             Detalle
           </TabsTrigger>
@@ -663,7 +663,7 @@ const DepartamentoFundacionAgendaSemanal: React.FC = () => {
           <Card className="bg-white shadow-sm border border-gray-200">
             <CardHeader>
               <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                <CalendarDays className="text-[#8cb43a]" />
+                <CalendarDays className="text-[#1e3269]" />
                 Vista de Calendario Semanal
               </CardTitle>
             </CardHeader>
@@ -682,11 +682,11 @@ const DepartamentoFundacionAgendaSemanal: React.FC = () => {
                           <div
                             key={event.id}
                             className={`p-3 rounded-lg border-l-4 cursor-pointer hover:shadow-md transition-shadow ${
-                              event.type === 'meeting' ? 'bg-blue-50 border-blue-400' :
-                              event.type === 'critical-task' ? 'bg-yellow-50 border-yellow-400' :
-                              event.type === 'deadline' ? 'bg-red-50 border-red-400' :
-                              event.type === 'review' ? 'bg-green-50 border-green-400' :
-                              event.type === 'presentation' ? 'bg-purple-50 border-purple-400' :
+                              event.type === 'meeting' ? 'bg-[#1e3269] bg-opacity-10 border-[#1e3269]' :
+                              event.type === 'critical-task' ? 'bg-[#fbbf24] bg-opacity-20 border-[#fbbf24]' :
+                              event.type === 'deadline' ? 'bg-[#ef4444] bg-opacity-20 border-[#ef4444]' :
+                              event.type === 'review' ? 'bg-[#f59e0b] bg-opacity-20 border-[#f59e0b]' :
+                              event.type === 'presentation' ? 'bg-[#8b5cf6] bg-opacity-20 border-[#8b5cf6]' :
                               'bg-gray-50 border-gray-400'
                             }`}
                           >
@@ -720,7 +720,7 @@ const DepartamentoFundacionAgendaSemanal: React.FC = () => {
           <Card className="bg-white shadow-sm border border-gray-200">
             <CardHeader>
               <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                <List className="text-[#8cb43a]" />
+                <List className="text-[#1e3269]" />
                 Vista de Lista
               </CardTitle>
             </CardHeader>
@@ -732,7 +732,7 @@ const DepartamentoFundacionAgendaSemanal: React.FC = () => {
                   
                   return (
                     <div key={day} className="space-y-3">
-                      <div className="font-semibold text-lg text-[#8cb43a] border-b border-gray-200 pb-2">
+                      <div className="font-semibold text-lg text-[#1e3269] border-b border-gray-200 pb-2">
                         {day}
                       </div>
                       <div className="space-y-3">
@@ -802,7 +802,7 @@ const DepartamentoFundacionAgendaSemanal: React.FC = () => {
             <Card className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                  <LineChart className="text-[#8cb43a]" />
+                  <LineChart className="text-[#1e3269]" />
                   Tendencias Semanales
                 </CardTitle>
               </CardHeader>
@@ -814,8 +814,8 @@ const DepartamentoFundacionAgendaSemanal: React.FC = () => {
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Line type="monotone" dataKey="events" stroke="#8cb43a" strokeWidth={2} name="Eventos" />
-                    <Line type="monotone" dataKey="completed" stroke="#3b82f6" strokeWidth={2} name="Completados" />
+                    <Line type="monotone" dataKey="events" stroke="#1e3269" strokeWidth={2} name="Eventos" />
+                    <Line type="monotone" dataKey="completed" stroke="#fbbf24" strokeWidth={2} name="Completados" />
                     <Line type="monotone" dataKey="critical" stroke="#ef4444" strokeWidth={2} name="Críticos" />
                   </RechartsLineChart>
                 </ResponsiveContainer>
@@ -826,7 +826,7 @@ const DepartamentoFundacionAgendaSemanal: React.FC = () => {
             <Card className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                  <PieChart className="text-[#8cb43a]" />
+                  <PieChart className="text-[#1e3269]" />
                   Distribución por Tipo
                 </CardTitle>
               </CardHeader>
@@ -858,7 +858,7 @@ const DepartamentoFundacionAgendaSemanal: React.FC = () => {
           <Card className="bg-white shadow-sm border border-gray-200">
             <CardHeader>
               <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                <BarChart3 className="text-[#8cb43a]" />
+                <BarChart3 className="text-[#1e3269]" />
                 Carga de Trabajo Diaria
               </CardTitle>
             </CardHeader>
@@ -871,8 +871,8 @@ const DepartamentoFundacionAgendaSemanal: React.FC = () => {
                   <YAxis yAxisId="right" orientation="right" />
                   <Tooltip />
                   <Legend />
-                  <Bar yAxisId="left" dataKey="events" fill="#8cb43a" name="Eventos" />
-                  <Line yAxisId="right" type="monotone" dataKey="hours" stroke="#3b82f6" strokeWidth={2} name="Horas" />
+                  <Bar dataKey="events" fill="#1e3269" name="Eventos" />
+                  <Line yAxisId="right" type="monotone" dataKey="hours" stroke="#fbbf24" strokeWidth={2} name="Horas" />
                 </ComposedChart>
               </ResponsiveContainer>
             </CardContent>
@@ -884,7 +884,7 @@ const DepartamentoFundacionAgendaSemanal: React.FC = () => {
           <Card className="bg-white shadow-sm border border-gray-200">
             <CardHeader>
               <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                <UsersIcon className="text-[#8cb43a]" />
+                <UsersIcon className="text-[#1e3269]" />
                 Rendimiento del Equipo
               </CardTitle>
             </CardHeader>
@@ -897,8 +897,8 @@ const DepartamentoFundacionAgendaSemanal: React.FC = () => {
                   <YAxis yAxisId="right" orientation="right" />
                   <Tooltip />
                   <Legend />
-                  <Bar yAxisId="left" dataKey="events" fill="#8cb43a" name="Eventos" />
-                  <Bar yAxisId="left" dataKey="completed" fill="#3b82f6" name="Completados" />
+                  <Bar yAxisId="left" dataKey="events" fill="#1e3269" name="Eventos" />
+                  <Bar yAxisId="left" dataKey="completed" fill="#fbbf24" name="Completados" />
                   <Line yAxisId="right" type="monotone" dataKey="efficiency" stroke="#10b981" strokeWidth={2} name="Eficiencia (%)" />
                 </ComposedChart>
               </ResponsiveContainer>
@@ -911,7 +911,7 @@ const DepartamentoFundacionAgendaSemanal: React.FC = () => {
           <Card className="bg-white shadow-sm border border-gray-200">
             <CardHeader>
               <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                <BarChart2 className="text-[#8cb43a]" />
+                <BarChart2 className="text-[#1e3269]" />
                 Tabla Detallada de Eventos
               </CardTitle>
             </CardHeader>

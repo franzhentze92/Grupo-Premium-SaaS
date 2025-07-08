@@ -126,45 +126,50 @@ const allTypes = Array.from(new Set(projects.map(p => p.type)));
 const allRegions = Array.from(new Set(projects.map(p => p.region)));
 
 const statusColors: Record<string, string> = {
-  'Activo': 'bg-green-100 text-green-800 border-green-200',
-  'Finalizado': 'bg-blue-100 text-blue-800 border-blue-200',
-  'Planificado': 'bg-yellow-100 text-yellow-800 border-yellow-200',
+  'Activo': 'bg-[#1e326922] text-[#1e3269] border-[#1e3269] border',
+  'Finalizado': 'bg-[#fbbf2422] text-[#fbbf24] border-[#fbbf24] border',
+  'Planificado': 'bg-[#e5e7eb] text-[#1e3269] border-[#e5e7eb] border',
 };
 
 const prioridadColors: Record<string, string> = {
-  'Alta': 'bg-red-100 text-red-800 border-red-200',
-  'Media': 'bg-orange-100 text-orange-800 border-orange-200',
-  'Baja': 'bg-blue-100 text-blue-800 border-blue-200',
+  'Alta': 'bg-[#1e326922] text-[#1e3269] border-[#1e3269] border',
+  'Media': 'bg-[#fbbf2422] text-[#fbbf24] border-[#fbbf24] border',
+  'Baja': 'bg-[#e5e7eb] text-[#1e3269] border-[#e5e7eb] border',
 };
 
+// Refactor kpiCards to use colorful icon backgrounds and icons (e.g., bg-blue-100 text-blue-700, bg-green-100 text-green-700, etc.), not navy/gold for the card itself.
 const kpiCards = [
-  { 
-    label: 'Total Proyectos', 
-    value: projects.length, 
+  {
+    label: 'Total Proyectos',
+    value: projects.length,
     icon: Building2,
-    color: 'bg-blue-50 border-blue-200 text-blue-700',
-    trend: '+2 este mes'
+    color: 'bg-blue-100 text-blue-700',
+    trend: '+2 este mes',
+    trendColor: '#1e3269'
   },
-  { 
-    label: 'Activos', 
-    value: projects.filter(p => p.status === 'Activo').length, 
+  {
+    label: 'Activos',
+    value: projects.filter(p => p.status === 'Activo').length,
     icon: TrendingUp,
-    color: 'bg-green-50 border-green-200 text-green-700',
-    trend: '+1 esta semana'
+    color: 'bg-green-100 text-green-700',
+    trend: '+1 esta semana',
+    trendColor: '#1e3269'
   },
-  { 
-    label: 'Avance Promedio', 
-    value: `${Math.round(projects.reduce((acc, p) => acc + p.avance, 0) / projects.length)}%`, 
+  {
+    label: 'Avance Promedio',
+    value: `${Math.round(projects.reduce((acc, p) => acc + p.avance, 0) / projects.length)}%`,
     icon: BarChart3,
-    color: 'bg-purple-50 border-purple-200 text-purple-700',
-    trend: '+8% vs mes anterior'
+    color: 'bg-purple-100 text-purple-700',
+    trend: '+8% vs mes anterior',
+    trendColor: '#fbbf24'
   },
-  { 
-    label: 'Regiones', 
-    value: allRegions.length, 
+  {
+    label: 'Regiones',
+    value: allRegions.length,
     icon: MapPin,
-    color: 'bg-orange-50 border-orange-200 text-orange-700',
-    trend: '4 zonas activas'
+    color: 'bg-orange-100 text-orange-700',
+    trend: '4 zonas activas',
+    trendColor: '#fbbf24'
   }
 ];
 
@@ -191,9 +196,9 @@ const MapaVistaSatelital: React.FC = () => {
 
   const getMapIcon = (status: string) => {
     switch (status) {
-      case 'Activo': return 'text-green-600';
-      case 'Finalizado': return 'text-blue-600';
-      case 'Planificado': return 'text-yellow-600';
+      case 'Activo': return 'text-[#1e3269]';
+      case 'Finalizado': return 'text-[#fbbf24]';
+      case 'Planificado': return 'text-[#e5e7eb]';
       default: return 'text-gray-600';
     }
   };
@@ -205,7 +210,7 @@ const MapaVistaSatelital: React.FC = () => {
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div>
             <h1 className="text-3xl font-bold text-gray-800 mb-2 flex items-center gap-3">
-              <div className="p-2 bg-[#8cb43a] rounded-lg">
+              <div className="p-2 bg-[#1e3269] rounded-lg">
                 <Satellite className="text-white h-6 w-6" />
               </div>
               Vista Satelital de Proyectos
@@ -214,30 +219,24 @@ const MapaVistaSatelital: React.FC = () => {
           </div>
           <div className="flex items-center gap-3">
             <Button
-              variant={mapView === 'satellite' ? 'default' : 'outline'}
-              size="sm"
               onClick={() => setMapView('satellite')}
-              className="flex items-center gap-2"
+              className={`flex items-center gap-2 rounded-lg px-4 py-2 font-medium transition-colors ${mapView === 'satellite' ? 'bg-[#1e3269] text-white' : 'bg-white border border-[#1e3269] text-[#1e3269] hover:bg-[#1e3269] hover:text-white'}`}
             >
-              <Satellite className="h-4 w-4" />
+              <Satellite className={`h-4 w-4 ${mapView === 'satellite' ? 'text-white' : 'text-[#1e3269]'}`} />
               Satelital
             </Button>
             <Button
-              variant={mapView === 'terrain' ? 'default' : 'outline'}
-              size="sm"
               onClick={() => setMapView('terrain')}
-              className="flex items-center gap-2"
+              className={`flex items-center gap-2 rounded-lg px-4 py-2 font-medium transition-colors ${mapView === 'terrain' ? 'bg-[#1e3269] text-white' : 'bg-white border border-[#1e3269] text-[#1e3269] hover:bg-[#1e3269] hover:text-white'}`}
             >
-              <Layers className="h-4 w-4" />
+              <Layers className={`h-4 w-4 ${mapView === 'terrain' ? 'text-white' : 'text-[#1e3269]'}`} />
               Terreno
             </Button>
             <Button
-              variant={mapView === 'street' ? 'default' : 'outline'}
-              size="sm"
               onClick={() => setMapView('street')}
-              className="flex items-center gap-2"
+              className={`flex items-center gap-2 rounded-lg px-4 py-2 font-medium transition-colors ${mapView === 'street' ? 'bg-[#1e3269] text-white' : 'bg-white border border-[#1e3269] text-[#1e3269] hover:bg-[#1e3269] hover:text-white'}`}
             >
-              <Navigation className="h-4 w-4" />
+              <Navigation className={`h-4 w-4 ${mapView === 'street' ? 'text-white' : 'text-[#1e3269]'}`} />
               Callejero
             </Button>
           </div>
@@ -255,7 +254,7 @@ const MapaVistaSatelital: React.FC = () => {
                   <div className={`p-2 rounded-lg ${kpi.color.split(' ')[0]}`}>
                     <IconComponent className="h-5 w-5" />
                   </div>
-                  <span className="text-xs font-medium text-green-600">{kpi.trend}</span>
+                  <span className="text-xs font-medium" style={{color: kpi.trendColor}}>{kpi.trend}</span>
                 </div>
               </CardHeader>
               <CardContent>
@@ -271,7 +270,7 @@ const MapaVistaSatelital: React.FC = () => {
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <div className="flex flex-col lg:flex-row gap-4 items-center">
           <div className="flex items-center gap-2">
-            <Filter className="text-[#8cb43a] h-5 w-5" />
+            <Filter className="text-[#1e3269] h-5 w-5" />
             <span className="text-sm font-medium text-gray-700">Filtros:</span>
           </div>
           <div className="relative flex-1 max-w-md">
@@ -320,7 +319,7 @@ const MapaVistaSatelital: React.FC = () => {
                 setRegionFilter(undefined);
                 setSearchTerm('');
               }}
-              className="text-[#8cb43a] border-[#8cb43a] hover:bg-[#8cb43a] hover:text-white"
+              className="text-[#1e3269] border-[#1e3269] hover:bg-[#1e3269] hover:text-white"
             >
               Limpiar Filtros
             </Button>
@@ -388,7 +387,7 @@ const MapaVistaSatelital: React.FC = () => {
                         <span className="text-sm font-medium text-gray-700">Progreso</span>
                         <span className="text-sm font-bold text-gray-800">{selectedProject.avance}%</span>
                       </div>
-                      <Progress value={selectedProject.avance} className="h-2" />
+                      <Progress value={selectedProject.avance} className="h-2 bg-[#e5e7eb]" />
                     </div>
                     
                     <div className="grid grid-cols-2 gap-4 text-sm">
@@ -414,7 +413,7 @@ const MapaVistaSatelital: React.FC = () => {
                   </div>
 
                   <div className="flex gap-2 pt-3">
-                    <Button size="sm" className="flex-1 bg-[#8cb43a] hover:bg-[#7ca02e]">
+                    <Button size="sm" className="flex-1 bg-[#1e3269] hover:bg-[#1a2b5b]">
                       <Eye className="h-4 w-4 mr-2" />
                       Ver Detalles
                     </Button>
@@ -446,13 +445,13 @@ const MapaVistaSatelital: React.FC = () => {
                     key={project.id}
                     className={`p-3 rounded-lg border cursor-pointer transition-colors ${
                       selectedProject?.id === project.id 
-                        ? 'border-[#8cb43a] bg-green-50' 
+                        ? 'border-[#1e3269] bg-[#e3eafc]' 
                         : 'border-gray-200 hover:bg-gray-50'
                     }`}
                     onClick={() => setSelectedProject(project)}
                   >
                     <div className="flex items-center gap-3">
-                      <span className={`inline-block w-3 h-3 rounded-full ${project.color}`}></span>
+                      <span className={`inline-block w-3 h-3 rounded-full ${project.status === 'Activo' ? 'bg-[#1e3269]' : project.status === 'Finalizado' ? 'bg-[#fbbf24]' : 'bg-[#e5e7eb]'}`}></span>
                       <div className="flex-1">
                         <div className="font-semibold text-gray-800 text-sm">{project.name}</div>
                         <div className="text-xs text-gray-600">{project.region} • {project.type}</div>

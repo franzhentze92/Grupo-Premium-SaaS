@@ -41,9 +41,14 @@ import DepartamentoArquitecturaAgendaSemanal from './pages/DepartamentoArquitect
 import DepartamentoArquitecturaTareas from './pages/DepartamentoArquitecturaTareas';
 import DepartamentoMercadeoReporteInterno from './pages/DepartamentoMercadeoReporteInterno';
 import DepartamentoMercadeoAgendaSemanal from './pages/DepartamentoMercadeoAgendaSemanal';
+import DepartamentoMercadeoTareas from './pages/DepartamentoMercadeoTareas';
 import DepartamentoFundacionReporteInterno from './pages/DepartamentoFundacionReporteInterno';
 import DepartamentoFundacionAgendaSemanal from './pages/DepartamentoFundacionAgendaSemanal';
+import DepartamentoFundacionTareas from './pages/DepartamentoFundacionTareas';
 import DepartamentoVentasReporteInterno from './pages/DepartamentoVentasReporteInterno';
+import DepartamentoVentasAgendaSemanal from './pages/DepartamentoVentasAgendaSemanal';
+import DepartamentoVentasTareas from './pages/DepartamentoVentasTareas';
+import ProyectoDetalle from './pages/ProyectoDetalle';
 
 const queryClient = new QueryClient();
 
@@ -95,9 +100,14 @@ const App = () => (
                 <Route path="/departamentos/arquitectura/tareas" element={<DepartamentoArquitecturaTareas />} />
                 <Route path="/departamentos/mercadeo/reporte-interno" element={<DepartamentoMercadeoReporteInterno />} />
                 <Route path="/departamentos/mercadeo/agenda-semanal" element={<DepartamentoMercadeoAgendaSemanal />} />
+                <Route path="/departamentos/mercadeo/tareas" element={<DepartamentoMercadeoTareas />} />
                 <Route path="/departamentos/fundacion/reporte-interno" element={<DepartamentoFundacionReporteInterno />} />
                 <Route path="/departamentos/fundacion/agenda-semanal" element={<DepartamentoFundacionAgendaSemanal />} />
+                <Route path="/departamentos/fundacion/tareas" element={<DepartamentoFundacionTareas />} />
                 <Route path="/departamentos/ventas/reporte-interno" element={<DepartamentoVentasReporteInterno />} />
+                <Route path="/departamentos/ventas/agenda-semanal" element={<DepartamentoVentasAgendaSemanal />} />
+                <Route path="/departamentos/ventas/tareas" element={<DepartamentoVentasTareas />} />
+                <Route path="/proyectos/detalle" element={<ProyectoDetalle />} />
               </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>

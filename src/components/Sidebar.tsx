@@ -70,11 +70,24 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onToggle }) => {
     return location.pathname === path;
   };
 
+  // New: check if any child is active
+  const isAnyChildActive = (children?: (string | MenuItem)[]): boolean => {
+    if (!children) return false;
+    return children.some(child => {
+      if (typeof child === 'object' && child.path) {
+        return isActive(child.path);
+      } else if (typeof child === 'object' && child.children) {
+        return isAnyChildActive(child.children);
+      }
+      return false;
+    });
+  };
+
   const renderMenuItem = (item: MenuItem, level: number = 0) => {
     const IconComponent = iconMap[item.icon] || LayoutDashboard;
     const isExpanded = expandedItems.has(item.title);
     const hasChildren = item.children && item.children.length > 0;
-    const isActiveItem = isActive(item.path);
+    const isActiveItem = isActive(item.path) || isAnyChildActive(item.children);
 
     return (
       <div key={item.title}>
@@ -86,7 +99,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onToggle }) => {
                 className={cn(
                   "w-full justify-start gap-2 h-10 px-3",
                   level > 0 && "ml-4",
-                  isCollapsed && "justify-center px-2"
+                  isCollapsed && "justify-center px-2",
+                  isActiveItem && "bg-[#fbbf24] text-[#1e3269] hover:bg-[#e6b800] hover:text-[#1e3269]"
                 )}
               >
                 <IconComponent className="h-4 w-4" />
@@ -150,10 +164,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onToggle }) => {
                 return (
                   <Link to={child.path} key={index}>
                     <Button
-                      variant="ghost"
+                      variant={isActive(child.path) ? "secondary" : "ghost"}
                       className={cn(
                         "w-full justify-start gap-2 h-8 px-3 text-sm",
-                        level > 0 ? "ml-8" : "ml-4"
+                        level > 0 ? "ml-8" : "ml-4",
+                        isActive(child.path) && "bg-[#fbbf24] text-[#1e3269] hover:bg-[#e6b800] hover:text-[#1e3269]"
                       )}
                     >
                       <span className="inline-block w-2 h-2 rounded-full bg-gray-400 mr-2 align-middle" />
@@ -180,7 +195,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onToggle }) => {
       <div className="flex h-16 items-center justify-between border-b px-4">
         {!isCollapsed && (
           <div className="flex items-center gap-2">
-            <Building className="h-6 w-6" />
+            <div className="bg-[#1e3269] rounded p-1 flex items-center justify-center" style={{height: 28, width: 28}}>
+              <img src="/grupo-premium-logo.gif" alt="Grupo Premium Logo" className="h-6 w-6 object-contain" />
+            </div>
             <span className="font-semibold">Grupo Premium</span>
           </div>
         )}

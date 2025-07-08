@@ -394,7 +394,7 @@ const ReportesComparativoProyectos: React.FC = () => {
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div>
             <h1 className="text-3xl font-bold text-gray-800 mb-2 flex items-center gap-3">
-              <div className="p-2 bg-[#8cb43a] rounded-lg">
+              <div className="p-2 bg-[#1e3269] rounded-lg">
                 <GitCompare className="text-white h-6 w-6" />
               </div>
               Comparativo de Proyectos - Análisis Detallado
@@ -402,15 +402,15 @@ const ReportesComparativoProyectos: React.FC = () => {
             <p className="text-gray-600">Análisis comparativo completo entre proyectos con métricas avanzadas</p>
           </div>
           <div className="flex items-center gap-3">
-            <Button variant="outline" size="sm" className="flex items-center gap-2">
+            <Button variant="outline" size="sm" className="flex items-center gap-2 border-[#1e3269] text-[#1e3269] hover:bg-[#1e3269] hover:text-white">
               <Download className="h-4 w-4" />
               Exportar PDF
             </Button>
-            <Button variant="outline" size="sm" className="flex items-center gap-2">
+            <Button variant="outline" size="sm" className="flex items-center gap-2 border-[#1e3269] text-[#1e3269] hover:bg-[#1e3269] hover:text-white">
               <Printer className="h-4 w-4" />
               Imprimir
             </Button>
-            <Button variant="outline" size="sm" className="flex items-center gap-2">
+            <Button variant="outline" size="sm" className="flex items-center gap-2 border-[#1e3269] text-[#1e3269] hover:bg-[#1e3269] hover:text-white">
               <Share2 className="h-4 w-4" />
               Compartir
             </Button>
@@ -422,7 +422,7 @@ const ReportesComparativoProyectos: React.FC = () => {
       <Card className="bg-white shadow-sm border border-gray-200">
         <CardHeader>
           <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-            <Scale className="text-[#8cb43a]" />
+            <Scale className="text-[#1e3269]" />
             Selección de Proyectos para Comparación
           </CardTitle>
         </CardHeader>
@@ -430,7 +430,7 @@ const ReportesComparativoProyectos: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div className="space-y-4">
               <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-[#8cb43a] rounded-full"></div>
+                <div className="w-3 h-3 bg-[#1e3269] rounded-full"></div>
                 <label className="font-medium">Proyecto 1</label>
               </div>
               <Select value={selectedProject1} onValueChange={setSelectedProject1}>
@@ -444,7 +444,7 @@ const ReportesComparativoProyectos: React.FC = () => {
             </div>
             <div className="space-y-4">
               <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-[#3b82f6] rounded-full"></div>
+                <div className="w-3 h-3 bg-[#fbbf24] rounded-full"></div>
                 <label className="font-medium">Proyecto 2</label>
               </div>
               <Select value={selectedProject2} onValueChange={setSelectedProject2}>
@@ -490,7 +490,7 @@ const ReportesComparativoProyectos: React.FC = () => {
       <Card className="bg-white shadow-sm border border-gray-200">
         <CardHeader>
           <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-            <Filter className="text-[#8cb43a]" />
+            <Filter className="text-[#1e3269]" />
             Filtros y Búsqueda
           </CardTitle>
         </CardHeader>
@@ -539,24 +539,24 @@ const ReportesComparativoProyectos: React.FC = () => {
       {/* Main Content Tabs */}
       <Tabs value={viewMode} onValueChange={(value) => setViewMode(value as any)} className="space-y-6">
         <TabsList className="grid w-full grid-cols-5">
-          <TabsTrigger value="overview" className="flex items-center gap-2">
-            <Eye className="h-4 w-4" />
+          <TabsTrigger value="overview" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
+            <Eye className={`h-4 w-4 ${viewMode === 'overview' ? 'text-white' : 'text-[#1e3269]'}`} />
             Resumen
           </TabsTrigger>
-          <TabsTrigger value="performance" className="flex items-center gap-2">
-            <BarChart3 className="h-4 w-4" />
+          <TabsTrigger value="performance" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
+            <BarChart3 className={`h-4 w-4 ${viewMode === 'performance' ? 'text-white' : 'text-[#1e3269]'}`} />
             Rendimiento
           </TabsTrigger>
-          <TabsTrigger value="financial" className="flex items-center gap-2">
-            <DollarSign className="h-4 w-4" />
+          <TabsTrigger value="financial" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
+            <DollarSign className={`h-4 w-4 ${viewMode === 'financial' ? 'text-white' : 'text-[#1e3269]'}`} />
             Financiero
           </TabsTrigger>
-          <TabsTrigger value="timeline" className="flex items-center gap-2">
-            <LineChart className="h-4 w-4" />
+          <TabsTrigger value="timeline" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
+            <LineChart className={`h-4 w-4 ${viewMode === 'timeline' ? 'text-white' : 'text-[#1e3269]'}`} />
             Cronología
           </TabsTrigger>
-          <TabsTrigger value="detailed" className="flex items-center gap-2">
-            <BarChart2 className="h-4 w-4" />
+          <TabsTrigger value="detailed" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
+            <BarChart2 className={`h-4 w-4 ${viewMode === 'detailed' ? 'text-white' : 'text-[#1e3269]'}`} />
             Detalle
           </TabsTrigger>
         </TabsList>
@@ -568,7 +568,7 @@ const ReportesComparativoProyectos: React.FC = () => {
             <Card className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                  <BarChart3 className="text-[#8cb43a]" />
+                  <BarChart3 className="text-[#1e3269]" />
                   Comparación de Métricas Clave
                 </CardTitle>
               </CardHeader>
@@ -580,8 +580,8 @@ const ReportesComparativoProyectos: React.FC = () => {
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="torrePremium" fill="#8cb43a" name="Torre Premium I" />
-                    <Bar dataKey="residencialVista" fill="#3b82f6" name="Residencial Vista Sur" />
+                    <Bar dataKey="torrePremium" fill="#1e3269" name="Torre Premium I" />
+                    <Bar dataKey="residencialVista" fill="#fbbf24" name="Residencial Vista Sur" />
                     <Bar dataKey="centroComercial" fill="#ef4444" name="Centro Comercial" />
                   </RechartsBarChart>
                 </ResponsiveContainer>
@@ -592,7 +592,7 @@ const ReportesComparativoProyectos: React.FC = () => {
             <Card className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                  <AlertCircle className="text-[#8cb43a]" />
+                  <AlertCircle className="text-[#1e3269]" />
                   Evaluación de Riesgos
                 </CardTitle>
               </CardHeader>
@@ -618,7 +618,7 @@ const ReportesComparativoProyectos: React.FC = () => {
             <Card className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                  <GitCompare className="text-[#8cb43a]" />
+                  <GitCompare className="text-[#1e3269]" />
                   Detalles de Comparación
                 </CardTitle>
               </CardHeader>
@@ -627,7 +627,7 @@ const ReportesComparativoProyectos: React.FC = () => {
                   {/* Project 1 */}
                   <div className="space-y-4">
                     <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 bg-[#8cb43a] rounded-full"></div>
+                      <div className="w-3 h-3 bg-[#1e3269] rounded-full"></div>
                       <h3 className="font-semibold text-lg">{project1.name}</h3>
                     </div>
                     <div className="space-y-3">
@@ -665,7 +665,7 @@ const ReportesComparativoProyectos: React.FC = () => {
                   {/* Project 2 */}
                   <div className="space-y-4">
                     <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 bg-[#3b82f6] rounded-full"></div>
+                      <div className="w-3 h-3 bg-[#fbbf24] rounded-full"></div>
                       <h3 className="font-semibold text-lg">{project2.name}</h3>
                     </div>
                     <div className="space-y-3">
@@ -712,7 +712,7 @@ const ReportesComparativoProyectos: React.FC = () => {
             <Card className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                  <Target className="text-[#8cb43a]" />
+                  <Target className="text-[#1e3269]" />
                   Análisis de Rendimiento
                 </CardTitle>
               </CardHeader>
@@ -722,8 +722,8 @@ const ReportesComparativoProyectos: React.FC = () => {
                     <PolarGrid />
                     <PolarAngleAxis dataKey="metric" />
                     <PolarRadiusAxis angle={90} domain={[0, 100]} />
-                    <Radar name="Torre Premium I" dataKey="torrePremium" stroke="#8cb43a" fill="#8cb43a" fillOpacity={0.3} />
-                    <Radar name="Residencial Vista Sur" dataKey="residencialVista" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.3} />
+                    <Radar name="Torre Premium I" dataKey="torrePremium" stroke="#1e3269" fill="#1e3269" fillOpacity={0.3} />
+                    <Radar name="Residencial Vista Sur" dataKey="residencialVista" stroke="#fbbf24" fill="#fbbf24" fillOpacity={0.3} />
                     <Radar name="Centro Comercial" dataKey="centroComercial" stroke="#ef4444" fill="#ef4444" fillOpacity={0.3} />
                     <Legend />
                   </RadarChart>
@@ -735,7 +735,7 @@ const ReportesComparativoProyectos: React.FC = () => {
             <Card className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                  <Activity className="text-[#8cb43a]" />
+                  <Activity className="text-[#1e3269]" />
                   Comparación de Eficiencia
                 </CardTitle>
               </CardHeader>
@@ -747,8 +747,8 @@ const ReportesComparativoProyectos: React.FC = () => {
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="torrePremium" fill="#8cb43a" name="Torre Premium I" />
-                    <Line type="monotone" dataKey="residencialVista" stroke="#3b82f6" strokeWidth={2} name="Residencial Vista Sur" />
+                    <Bar dataKey="torrePremium" fill="#1e3269" name="Torre Premium I" />
+                    <Line type="monotone" dataKey="residencialVista" stroke="#fbbf24" strokeWidth={2} name="Residencial Vista Sur" />
                   </ComposedChart>
                 </ResponsiveContainer>
               </CardContent>
@@ -763,7 +763,7 @@ const ReportesComparativoProyectos: React.FC = () => {
             <Card className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                  <DollarSign className="text-[#8cb43a]" />
+                  <DollarSign className="text-[#1e3269]" />
                   Comparación de Presupuestos
                 </CardTitle>
               </CardHeader>
@@ -775,8 +775,8 @@ const ReportesComparativoProyectos: React.FC = () => {
                     <YAxis />
                     <Tooltip formatter={(value) => [formatCurrency(Number(value)), 'Monto']} />
                     <Legend />
-                    <Area type="monotone" dataKey="torrePremium" fill="#8cb43a" fillOpacity={0.6} stroke="#8cb43a" name="Torre Premium I" />
-                    <Area type="monotone" dataKey="residencialVista" fill="#3b82f6" fillOpacity={0.6} stroke="#3b82f6" name="Residencial Vista Sur" />
+                    <Area type="monotone" dataKey="torrePremium" fill="#1e3269" fillOpacity={0.6} stroke="#1e3269" name="Torre Premium I" />
+                    <Area type="monotone" dataKey="residencialVista" fill="#fbbf24" fillOpacity={0.6} stroke="#fbbf24" name="Residencial Vista Sur" />
                     <Area type="monotone" dataKey="centroComercial" fill="#ef4444" fillOpacity={0.6} stroke="#ef4444" name="Centro Comercial" />
                   </RechartsAreaChart>
                 </ResponsiveContainer>
@@ -787,7 +787,7 @@ const ReportesComparativoProyectos: React.FC = () => {
             <Card className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                  <TrendingUp className="text-[#8cb43a]" />
+                  <TrendingUp className="text-[#1e3269]" />
                   Análisis de ROI
                 </CardTitle>
               </CardHeader>
@@ -799,8 +799,8 @@ const ReportesComparativoProyectos: React.FC = () => {
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="torrePremium" fill="#8cb43a" name="Torre Premium I" />
-                    <Bar dataKey="residencialVista" fill="#3b82f6" name="Residencial Vista Sur" />
+                    <Bar dataKey="torrePremium" fill="#1e3269" name="Torre Premium I" />
+                    <Bar dataKey="residencialVista" fill="#fbbf24" name="Residencial Vista Sur" />
                     <Bar dataKey="centroComercial" fill="#ef4444" name="Centro Comercial" />
                   </RechartsBarChart>
                 </ResponsiveContainer>
@@ -814,7 +814,7 @@ const ReportesComparativoProyectos: React.FC = () => {
           <Card className="bg-white shadow-sm border border-gray-200">
             <CardHeader>
               <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                <LineChart className="text-[#8cb43a]" />
+                <LineChart className="text-[#1e3269]" />
                 Evolución Temporal de Proyectos
               </CardTitle>
             </CardHeader>
@@ -826,8 +826,8 @@ const ReportesComparativoProyectos: React.FC = () => {
                   <YAxis />
                   <Tooltip />
                   <Legend />
-                  <Line type="monotone" dataKey="torrePremium" stroke="#8cb43a" strokeWidth={3} name="Torre Premium I" />
-                  <Line type="monotone" dataKey="residencialVista" stroke="#3b82f6" strokeWidth={3} name="Residencial Vista Sur" />
+                  <Line type="monotone" dataKey="torrePremium" stroke="#1e3269" strokeWidth={3} name="Torre Premium I" />
+                  <Line type="monotone" dataKey="residencialVista" stroke="#fbbf24" strokeWidth={3} name="Residencial Vista Sur" />
                   <Line type="monotone" dataKey="centroComercial" stroke="#ef4444" strokeWidth={3} name="Centro Comercial" />
                 </RechartsLineChart>
               </ResponsiveContainer>
@@ -840,7 +840,7 @@ const ReportesComparativoProyectos: React.FC = () => {
           <Card className="bg-white shadow-sm border border-gray-200">
             <CardHeader>
               <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                <BarChart2 className="text-[#8cb43a]" />
+                <BarChart2 className="text-[#1e3269]" />
                 Tabla Comparativa Detallada
               </CardTitle>
             </CardHeader>

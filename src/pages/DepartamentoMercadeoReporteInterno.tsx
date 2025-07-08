@@ -153,9 +153,9 @@ const marketingTrendData = [
 
 // Category distribution data
 const categoryData = [
-  { name: 'Redes Sociales', value: 35, fill: '#10b981' },
-  { name: 'Email Marketing', value: 25, fill: '#3b82f6' },
-  { name: 'Publicidad Digital', value: 20, fill: '#f59e0b' },
+  { name: 'Redes Sociales', value: 35, fill: '#1e3269' },
+  { name: 'Email Marketing', value: 25, fill: '#fbbf24' },
+  { name: 'Publicidad Digital', value: 20, fill: '#eab308' },
   { name: 'Contenido', value: 12, fill: '#ef4444' },
   { name: 'Eventos', value: 5, fill: '#8b5cf6' },
   { name: 'PR', value: 3, fill: '#6b7280' }
@@ -479,7 +479,7 @@ const DepartamentoMercadeoReporteInterno: React.FC = () => {
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div>
             <h1 className="text-3xl font-bold text-gray-800 mb-2 flex items-center gap-3">
-              <div className="p-2 bg-[#8cb43a] rounded-lg">
+              <div className="p-2 bg-[#1e3269] rounded-lg">
                 <Megaphone className="text-white h-6 w-6" />
               </div>
               Mercadeo - Reporte Interno
@@ -487,15 +487,15 @@ const DepartamentoMercadeoReporteInterno: React.FC = () => {
             <p className="text-gray-600">Análisis de mercadeo completo y gestión de campañas del departamento</p>
           </div>
           <div className="flex items-center gap-3">
-            <Button variant="outline" size="sm" className="flex items-center gap-2">
+            <Button variant="outline" size="sm" className="flex items-center gap-2 border-[#1e3269] text-[#1e3269] hover:bg-[#1e3269] hover:text-white">
               <DownloadIcon className="h-4 w-4" />
-              Exportar
+              Exportar PDF
             </Button>
-            <Button variant="outline" size="sm" className="flex items-center gap-2">
+            <Button variant="outline" size="sm" className="flex items-center gap-2 border-[#1e3269] text-[#1e3269] hover:bg-[#1e3269] hover:text-white">
               <Printer className="h-4 w-4" />
               Imprimir
             </Button>
-            <Button variant="outline" size="sm" className="flex items-center gap-2">
+            <Button variant="outline" size="sm" className="flex items-center gap-2 border-[#1e3269] text-[#1e3269] hover:bg-[#1e3269] hover:text-white">
               <Share2 className="h-4 w-4" />
               Compartir
             </Button>
@@ -531,7 +531,7 @@ const DepartamentoMercadeoReporteInterno: React.FC = () => {
       <Card className="bg-white shadow-sm border border-gray-200">
         <CardHeader>
           <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-            <FilterIcon className="text-[#8cb43a]" />
+            <FilterIcon className="text-[#1e3269]" />
             Filtros y Búsqueda
           </CardTitle>
         </CardHeader>
@@ -600,24 +600,24 @@ const DepartamentoMercadeoReporteInterno: React.FC = () => {
       {/* Main Content Tabs */}
       <Tabs value={viewMode} onValueChange={(value) => setViewMode(value as any)} className="space-y-6">
         <TabsList className="grid w-full grid-cols-5">
-          <TabsTrigger value="overview" className="flex items-center gap-2">
-            <BarChart4 className="h-4 w-4" />
+          <TabsTrigger value="overview" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
+            <Eye className={`h-4 w-4 ${viewMode === 'overview' ? 'text-white' : 'text-[#1e3269]'}`} />
             Resumen
           </TabsTrigger>
-          <TabsTrigger value="trends" className="flex items-center gap-2">
-            <TrendingUp className="h-4 w-4" />
+          <TabsTrigger value="trends" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
+            <TrendingUp className={`h-4 w-4 ${viewMode === 'trends' ? 'text-white' : 'text-[#1e3269]'}`} />
             Tendencias
           </TabsTrigger>
-          <TabsTrigger value="analysis" className="flex items-center gap-2">
-            <BarChart3 className="h-4 w-4" />
+          <TabsTrigger value="analysis" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
+            <BarChart3 className={`h-4 w-4 ${viewMode === 'analysis' ? 'text-white' : 'text-[#1e3269]'}`} />
             Análisis
           </TabsTrigger>
-          <TabsTrigger value="movements" className="flex items-center gap-2">
-            <List className="h-4 w-4" />
+          <TabsTrigger value="movements" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
+            <List className={`h-4 w-4 ${viewMode === 'movements' ? 'text-white' : 'text-[#1e3269]'}`} />
             Campañas
           </TabsTrigger>
-          <TabsTrigger value="detailed" className="flex items-center gap-2">
-            <BarChart2 className="h-4 w-4" />
+          <TabsTrigger value="detailed" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
+            <BarChart2 className={`h-4 w-4 ${viewMode === 'detailed' ? 'text-white' : 'text-[#1e3269]'}`} />
             Detalle
           </TabsTrigger>
         </TabsList>
@@ -629,7 +629,7 @@ const DepartamentoMercadeoReporteInterno: React.FC = () => {
             <Card className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                  <TrendingUp className="text-[#8cb43a]" />
+                  <TrendingUp className="text-[#1e3269]" />
                   Tendencias de Mercadeo
                 </CardTitle>
               </CardHeader>
@@ -641,7 +641,7 @@ const DepartamentoMercadeoReporteInterno: React.FC = () => {
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Line type="monotone" dataKey="campaigns" stroke="#8cb43a" strokeWidth={2} name="Campañas" />
+                    <Line type="monotone" dataKey="campaigns" stroke="#1e3269" strokeWidth={2} name="Campañas" />
                     <Line type="monotone" dataKey="impressions" stroke="#10b981" strokeWidth={2} name="Impresiones" />
                     <Line type="monotone" dataKey="clicks" stroke="#3b82f6" strokeWidth={2} name="Clicks" />
                     <Line type="monotone" dataKey="conversions" stroke="#f59e0b" strokeWidth={2} name="Conversiones" />
@@ -654,7 +654,7 @@ const DepartamentoMercadeoReporteInterno: React.FC = () => {
             <Card className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                  <PieChart className="text-[#8cb43a]" />
+                  <PieChart className="text-[#1e3269]" />
                   Distribución por Categoría
                 </CardTitle>
               </CardHeader>
@@ -686,7 +686,7 @@ const DepartamentoMercadeoReporteInterno: React.FC = () => {
           <Card className="bg-white shadow-sm border border-gray-200">
             <CardHeader>
               <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                <LineChart className="text-[#8cb43a]" />
+                <LineChart className="text-[#1e3269]" />
                 Análisis de Tendencias
               </CardTitle>
             </CardHeader>
@@ -698,7 +698,7 @@ const DepartamentoMercadeoReporteInterno: React.FC = () => {
                   <YAxis />
                   <Tooltip />
                   <Legend />
-                  <Area type="monotone" dataKey="campaigns" stackId="1" stroke="#8cb43a" fill="#8cb43a" fillOpacity={0.6} />
+                  <Area type="monotone" dataKey="campaigns" stackId="1" stroke="#1e3269" fill="#1e3269" fillOpacity={0.6} />
                   <Area type="monotone" dataKey="impressions" stackId="1" stroke="#10b981" fill="#10b981" fillOpacity={0.6} />
                   <Area type="monotone" dataKey="clicks" stackId="1" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.6} />
                 </RechartsAreaChart>
@@ -714,7 +714,7 @@ const DepartamentoMercadeoReporteInterno: React.FC = () => {
             <Card className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                  <BarChart2 className="text-[#8cb43a]" />
+                  <BarChart2 className="text-[#1e3269]" />
                   Desglose de Campañas
                 </CardTitle>
               </CardHeader>
@@ -725,7 +725,7 @@ const DepartamentoMercadeoReporteInterno: React.FC = () => {
                     <XAxis dataKey="category" />
                     <YAxis />
                     <Tooltip />
-                    <Bar dataKey="count" fill="#8cb43a" />
+                    <Bar dataKey="count" fill="#1e3269" />
                   </RechartsBarChart>
                 </ResponsiveContainer>
               </CardContent>
@@ -735,7 +735,7 @@ const DepartamentoMercadeoReporteInterno: React.FC = () => {
             <Card className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                  <Users className="text-[#8cb43a]" />
+                  <Users className="text-[#1e3269]" />
                   Rendimiento del Equipo
                 </CardTitle>
               </CardHeader>
@@ -748,7 +748,7 @@ const DepartamentoMercadeoReporteInterno: React.FC = () => {
                         <p className="text-sm text-gray-600">{member.campaigns} campañas</p>
                       </div>
                       <div className="text-right">
-                        <p className="text-lg font-bold text-[#8cb43a]">{member.efficiency}%</p>
+                        <p className="text-lg font-bold text-[#1e3269]">{member.efficiency}%</p>
                         <p className="text-sm text-gray-600">Eficiencia</p>
                       </div>
                     </div>
@@ -764,7 +764,7 @@ const DepartamentoMercadeoReporteInterno: React.FC = () => {
           <Card className="bg-white shadow-sm border border-gray-200">
             <CardHeader>
               <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                <List className="text-[#8cb43a]" />
+                <List className="text-[#1e3269]" />
                 Lista de Campañas
               </CardTitle>
             </CardHeader>
@@ -831,7 +831,7 @@ const DepartamentoMercadeoReporteInterno: React.FC = () => {
             <Card className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                  <Activity className="text-[#8cb43a]" />
+                  <Activity className="text-[#1e3269]" />
                   Métricas de Rendimiento
                 </CardTitle>
               </CardHeader>
@@ -861,7 +861,7 @@ const DepartamentoMercadeoReporteInterno: React.FC = () => {
             <Card className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                  <TrendingUp className="text-[#8cb43a]" />
+                  <TrendingUp className="text-[#1e3269]" />
                   Análisis de ROI
                 </CardTitle>
               </CardHeader>
@@ -869,7 +869,7 @@ const DepartamentoMercadeoReporteInterno: React.FC = () => {
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-medium text-gray-700">ROI Promedio</span>
-                    <span className="text-lg font-bold text-[#8cb43a]">{(metrics.averageROI * 100).toFixed(1)}%</span>
+                    <span className="text-lg font-bold text-[#1e3269]">{(metrics.averageROI * 100).toFixed(1)}%</span>
                   </div>
                   <Progress value={Math.min(metrics.averageROI * 100, 100)} className="w-full" />
                   <div className="text-xs text-gray-500">

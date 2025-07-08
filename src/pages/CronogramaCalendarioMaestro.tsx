@@ -212,10 +212,10 @@ const getPrioridadColor = (prioridad: string) => {
 };
 
 const getProgresoColor = (progreso: number) => {
-  if (progreso >= 80) return 'bg-green-500';
-  if (progreso >= 50) return 'bg-blue-500';
-  if (progreso >= 20) return 'bg-yellow-500';
-  return 'bg-red-500';
+  if (progreso >= 80) return 'bg-[#1e3269]';
+  if (progreso >= 50) return 'bg-[#fbbf24]';
+  if (progreso >= 20) return 'bg-[#e5e7eb]';
+  return 'bg-[#1e3269]';
 };
 
 // Convert activities to GanttCalendarTask format for gantt-task-react
@@ -250,42 +250,48 @@ const kpiCards = [
     value: activities.length,
     icon: CalendarDays,
     color: 'bg-blue-50 border-blue-200 text-blue-700',
-    trend: '+3 este mes'
+    trend: '+3 este mes',
+    trendColor: '#1e3269'
   },
   {
     label: 'Completadas',
     value: activities.filter(a => a.estado === 'Completada').length,
     icon: CheckCircle,
     color: 'bg-green-50 border-green-200 text-green-700',
-    trend: '+2 esta semana'
+    trend: '+2 esta semana',
+    trendColor: '#1e3269'
   },
   {
     label: 'En Progreso',
     value: activities.filter(a => a.estado === 'En Progreso').length,
     icon: Clock,
     color: 'bg-blue-50 border-blue-200 text-blue-700',
-    trend: '3 activas'
+    trend: '3 activas',
+    trendColor: '#fbbf24'
   },
   {
     label: 'Retrasadas',
     value: activities.filter(a => a.estado === 'Retrasada').length,
     icon: AlertCircle,
     color: 'bg-red-50 border-red-200 text-red-700',
-    trend: 'Requiere atención'
+    trend: 'Requiere atención',
+    trendColor: '#1e3269'
   },
   {
     label: 'Progreso Promedio',
     value: `${Math.round(activities.reduce((acc, a) => acc + a.progreso, 0) / activities.length)}%`,
     icon: TrendingUp,
     color: 'bg-purple-50 border-purple-200 text-purple-700',
-    trend: '+12% vs mes anterior'
+    trend: '+12% vs mes anterior',
+    trendColor: '#fbbf24'
   },
   {
     label: 'Equipo Total',
     value: activities.reduce((acc, a) => acc + a.equipo, 0),
     icon: Users,
     color: 'bg-orange-50 border-orange-200 text-orange-700',
-    trend: '104 personas'
+    trend: '104 personas',
+    trendColor: '#fbbf24'
   }
 ];
 
@@ -330,7 +336,7 @@ const CronogramaCalendarioMaestro: React.FC = () => {
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div>
             <h1 className="text-3xl font-bold text-gray-800 mb-2 flex items-center gap-3">
-              <div className="p-2 bg-[#8cb43a] rounded-lg">
+              <div className="p-2 bg-[#1e3269] rounded-lg">
                 <Calendar className="text-white h-6 w-6" />
               </div>
               Calendario Maestro (Timeline)
@@ -342,27 +348,27 @@ const CronogramaCalendarioMaestro: React.FC = () => {
               variant={viewMode === 'timeline' ? 'default' : 'outline'}
               size="sm"
               onClick={() => setViewMode('timeline')}
-              className="flex items-center gap-2"
+              className={`flex items-center gap-2 ${viewMode === 'timeline' ? 'bg-[#1e3269] text-white border-[#1e3269]' : 'border-[#1e3269] text-[#1e3269] bg-white'}`}
             >
-              <Calendar className="h-4 w-4" />
+              <Calendar className={`h-4 w-4 ${viewMode === 'timeline' ? 'text-white' : 'text-[#1e3269]'}`} />
               Timeline
             </Button>
             <Button
               variant={viewMode === 'list' ? 'default' : 'outline'}
               size="sm"
               onClick={() => setViewMode('list')}
-              className="flex items-center gap-2"
+              className={`flex items-center gap-2 ${viewMode === 'list' ? 'bg-[#1e3269] text-white border-[#1e3269]' : 'border-[#1e3269] text-[#1e3269] bg-white'}`}
             >
-              <List className="h-4 w-4" />
+              <List className={`h-4 w-4 ${viewMode === 'list' ? 'text-white' : 'text-[#1e3269]'}`} />
               Lista
             </Button>
             <Button
               variant={viewMode === 'gantt' ? 'default' : 'outline'}
               size="sm"
               onClick={() => setViewMode('gantt')}
-              className="flex items-center gap-2"
+              className={`flex items-center gap-2 ${viewMode === 'gantt' ? 'bg-[#1e3269] text-white border-[#1e3269]' : 'border-[#1e3269] text-[#1e3269] bg-white'}`}
             >
-              <BarChart3 className="h-4 w-4" />
+              <BarChart3 className={`h-4 w-4 ${viewMode === 'gantt' ? 'text-white' : 'text-[#1e3269]'}`} />
               Gantt
             </Button>
           </div>
@@ -378,7 +384,7 @@ const CronogramaCalendarioMaestro: React.FC = () => {
                 <div>
                   <p className="text-sm font-medium text-gray-600">{kpi.label}</p>
                   <p className="text-2xl font-bold text-gray-800">{kpi.value}</p>
-                  <p className="text-xs text-gray-500 mt-1">{kpi.trend}</p>
+                  <p className="text-xs text-gray-500 mt-1" style={{color: kpi.trendColor}}>{kpi.trend}</p>
                 </div>
                 <div className={`p-2 rounded-lg ${kpi.color}`}>
                   <kpi.icon className="h-5 w-5" />
@@ -393,7 +399,7 @@ const CronogramaCalendarioMaestro: React.FC = () => {
       <Card className="bg-white shadow-sm border border-gray-200">
         <CardHeader>
           <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-            <Filter className="text-[#8cb43a]" />
+            <Filter className="text-[#1e3269]" />
             Filtros y Búsqueda
           </CardTitle>
         </CardHeader>
@@ -449,7 +455,7 @@ const CronogramaCalendarioMaestro: React.FC = () => {
                 variant="outline"
                 size="sm"
                 onClick={clearFilters}
-                className="flex items-center gap-2"
+                className="flex items-center gap-2 text-[#1e3269] border-[#1e3269] hover:bg-[#1e3269] hover:text-white"
               >
                 <X className="h-4 w-4" />
                 Limpiar Filtros
@@ -510,7 +516,7 @@ const CronogramaCalendarioMaestro: React.FC = () => {
           <CardHeader>
             <div className="flex items-center justify-between">
               <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                <List className="text-[#8cb43a]" />
+                <List className="text-[#1e3269]" />
                 Actividades ({filteredActivities.length})
               </CardTitle>
               <div className="text-sm text-gray-500">
@@ -564,7 +570,7 @@ const CronogramaCalendarioMaestro: React.FC = () => {
                         <span className="text-gray-600">Progreso</span>
                         <span className="text-gray-800 font-medium">{activity.progreso}%</span>
                       </div>
-                      <Progress value={activity.progreso} className="h-2" />
+                      <Progress value={activity.progreso} className={`h-2 ${getProgresoColor(activity.progreso)}`} />
                     </div>
                     {activity.dependencias.length > 0 && (
                       <div className="mt-3 pt-3 border-t border-gray-200">

@@ -12,7 +12,7 @@ const Login = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-[#1e3269] p-4">
       <div className="w-full max-w-md">
         <LoginForm />
         <p className="text-center text-gray-500 text-sm mt-8">

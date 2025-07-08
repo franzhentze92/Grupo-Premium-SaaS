@@ -413,7 +413,7 @@ const ReportesKPIs: React.FC = () => {
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div>
             <h1 className="text-3xl font-bold text-gray-800 mb-2 flex items-center gap-3">
-              <div className="p-2 bg-[#8cb43a] rounded-lg">
+              <div className="p-2 bg-[#1e3269] rounded-lg">
                 <Target className="text-white h-6 w-6" />
               </div>
               KPIs - Indicadores Clave de Rendimiento
@@ -421,15 +421,15 @@ const ReportesKPIs: React.FC = () => {
             <p className="text-gray-600">Dashboard completo de métricas y indicadores de rendimiento organizacional</p>
           </div>
           <div className="flex items-center gap-3">
-            <Button variant="outline" size="sm" className="flex items-center gap-2">
+            <Button variant="outline" size="sm" className="flex items-center gap-2 border-[#1e3269] text-[#1e3269] hover:bg-[#1e3269] hover:text-white">
               <Download className="h-4 w-4" />
               Exportar PDF
             </Button>
-            <Button variant="outline" size="sm" className="flex items-center gap-2">
+            <Button variant="outline" size="sm" className="flex items-center gap-2 border-[#1e3269] text-[#1e3269] hover:bg-[#1e3269] hover:text-white">
               <Printer className="h-4 w-4" />
               Imprimir
             </Button>
-            <Button variant="outline" size="sm" className="flex items-center gap-2">
+            <Button variant="outline" size="sm" className="flex items-center gap-2 border-[#1e3269] text-[#1e3269] hover:bg-[#1e3269] hover:text-white">
               <Share2 className="h-4 w-4" />
               Compartir
             </Button>
@@ -468,7 +468,7 @@ const ReportesKPIs: React.FC = () => {
       <Card className="bg-white shadow-sm border border-gray-200">
         <CardHeader>
           <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-            <Filter className="text-[#8cb43a]" />
+            <Filter className="text-[#1e3269]" />
             Filtros y Búsqueda
           </CardTitle>
         </CardHeader>
@@ -527,24 +527,24 @@ const ReportesKPIs: React.FC = () => {
       {/* Main Content Tabs */}
       <Tabs value={viewMode} onValueChange={(value) => setViewMode(value as any)} className="space-y-6">
         <TabsList className="grid w-full grid-cols-5">
-          <TabsTrigger value="overview" className="flex items-center gap-2">
-            <Eye className="h-4 w-4" />
+          <TabsTrigger value="overview" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
+            <Eye className={`h-4 w-4 ${viewMode === 'overview' ? 'text-white' : 'text-[#1e3269]'}`} />
             Resumen
           </TabsTrigger>
-          <TabsTrigger value="trends" className="flex items-center gap-2">
-            <LineChart className="h-4 w-4" />
+          <TabsTrigger value="trends" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
+            <LineChart className={`h-4 w-4 ${viewMode === 'trends' ? 'text-white' : 'text-[#1e3269]'}`} />
             Tendencias
           </TabsTrigger>
-          <TabsTrigger value="performance" className="flex items-center gap-2">
-            <BarChart3 className="h-4 w-4" />
+          <TabsTrigger value="performance" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
+            <BarChart3 className={`h-4 w-4 ${viewMode === 'performance' ? 'text-white' : 'text-[#1e3269]'}`} />
             Rendimiento
           </TabsTrigger>
-          <TabsTrigger value="departments" className="flex items-center gap-2">
-            <Building2 className="h-4 w-4" />
+          <TabsTrigger value="departments" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
+            <Building2 className={`h-4 w-4 ${viewMode === 'departments' ? 'text-white' : 'text-[#1e3269]'}`} />
             Departamentos
           </TabsTrigger>
-          <TabsTrigger value="detailed" className="flex items-center gap-2">
-            <BarChart2 className="h-4 w-4" />
+          <TabsTrigger value="detailed" className={`flex items-center gap-2 data-[state=active]:bg-[#1e3269] data-[state=active]:text-white data-[state=active]:border-[#1e3269] rounded-none border-b-2 border-transparent px-6 py-4 text-base font-medium`}>
+            <BarChart2 className={`h-4 w-4 ${viewMode === 'detailed' ? 'text-white' : 'text-[#1e3269]'}`} />
             Detalle
           </TabsTrigger>
         </TabsList>
@@ -556,7 +556,7 @@ const ReportesKPIs: React.FC = () => {
             <Card className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                  <PieChart className="text-[#8cb43a]" />
+                  <PieChart className="text-[#1e3269]" />
                   Distribución por Estado
                 </CardTitle>
               </CardHeader>
@@ -565,9 +565,9 @@ const ReportesKPIs: React.FC = () => {
                   <RechartsPieChart>
                     <Pie
                       data={[
-                        { name: 'Excelente', value: excellentKPIs, fill: '#10b981' },
-                        { name: 'Bueno', value: goodKPIs, fill: '#3b82f6' },
-                        { name: 'Advertencia', value: warningKPIs, fill: '#f59e0b' },
+                        { name: 'Excelente', value: excellentKPIs, fill: '#1e3269' },
+                        { name: 'Bueno', value: goodKPIs, fill: '#fbbf24' },
+                        { name: 'Advertencia', value: warningKPIs, fill: '#eab308' },
                         { name: 'Crítico', value: criticalKPIs, fill: '#ef4444' }
                       ]}
                       cx="50%"
@@ -588,7 +588,7 @@ const ReportesKPIs: React.FC = () => {
             <Card className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                  <BarChart3 className="text-[#8cb43a]" />
+                  <BarChart3 className="text-[#1e3269]" />
                   Rendimiento por Categoría
                 </CardTitle>
               </CardHeader>
@@ -600,8 +600,8 @@ const ReportesKPIs: React.FC = () => {
                     <YAxis />
                     <Tooltip formatter={(value) => [`${value}%`, 'Puntuación']} />
                     <Legend />
-                    <Bar dataKey="score" fill="#8cb43a" name="Puntuación Actual" />
-                    <Bar dataKey="target" fill="#3b82f6" name="Objetivo" />
+                    <Bar dataKey="score" fill="#1e3269" name="Puntuación" />
+                    <Bar dataKey="target" fill="#fbbf24" name="Objetivo" />
                   </RechartsBarChart>
                 </ResponsiveContainer>
               </CardContent>
@@ -612,7 +612,7 @@ const ReportesKPIs: React.FC = () => {
           <Card className="bg-white shadow-sm border border-gray-200">
             <CardHeader>
               <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                <AlertTriangle className="text-[#8cb43a]" />
+                <AlertTriangle className="text-[#1e3269]" />
                 Evaluación de Riesgos
               </CardTitle>
             </CardHeader>
@@ -647,7 +647,7 @@ const ReportesKPIs: React.FC = () => {
             <Card className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                  <LineChart className="text-[#8cb43a]" />
+                  <LineChart className="text-[#1e3269]" />
                   Evolución de KPIs Principales
                 </CardTitle>
               </CardHeader>
@@ -659,8 +659,8 @@ const ReportesKPIs: React.FC = () => {
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Line type="monotone" dataKey="projectProgress" stroke="#8cb43a" strokeWidth={2} name="Progreso Proyectos" />
-                    <Line type="monotone" dataKey="budgetUtilization" stroke="#3b82f6" strokeWidth={2} name="Utilización Presupuesto" />
+                    <Line type="monotone" dataKey="projectProgress" stroke="#1e3269" strokeWidth={2} name="Progreso Proyectos" />
+                    <Line type="monotone" dataKey="budgetUtilization" stroke="#fbbf24" strokeWidth={2} name="Utilización Presupuesto" />
                     <Line type="monotone" dataKey="teamEfficiency" stroke="#10b981" strokeWidth={2} name="Eficiencia Equipo" />
                   </RechartsLineChart>
                 </ResponsiveContainer>
@@ -671,7 +671,7 @@ const ReportesKPIs: React.FC = () => {
             <Card className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                  <AreaChart className="text-[#8cb43a]" />
+                  <AreaChart className="text-[#1e3269]" />
                   Calidad y Riesgo
                 </CardTitle>
               </CardHeader>
@@ -684,7 +684,7 @@ const ReportesKPIs: React.FC = () => {
                     <YAxis yAxisId="right" orientation="right" />
                     <Tooltip />
                     <Legend />
-                    <Area yAxisId="left" type="monotone" dataKey="qualityScore" fill="#8cb43a" fillOpacity={0.6} stroke="#8cb43a" name="Calidad" />
+                    <Area yAxisId="left" type="monotone" dataKey="qualityScore" fill="#1e3269" fillOpacity={0.6} stroke="#1e3269" name="Calidad" />
                     <Bar yAxisId="right" dataKey="riskLevel" fill="#ef4444" name="Nivel de Riesgo" />
                   </ComposedChart>
                 </ResponsiveContainer>
@@ -696,7 +696,7 @@ const ReportesKPIs: React.FC = () => {
           <Card className="bg-white shadow-sm border border-gray-200">
             <CardHeader>
               <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                <TrendingUp className="text-[#8cb43a]" />
+                <TrendingUp className="text-[#1e3269]" />
                 Satisfacción del Cliente
               </CardTitle>
             </CardHeader>
@@ -708,7 +708,7 @@ const ReportesKPIs: React.FC = () => {
                   <YAxis domain={[4, 5]} />
                   <Tooltip formatter={(value) => [value, 'Puntuación']} />
                   <Legend />
-                  <Area type="monotone" dataKey="customerSatisfaction" fill="#8cb43a" fillOpacity={0.6} stroke="#8cb43a" strokeWidth={2} name="Satisfacción del Cliente" />
+                  <Area type="monotone" dataKey="customerSatisfaction" fill="#1e3269" fillOpacity={0.6} stroke="#1e3269" strokeWidth={2} name="Satisfacción del Cliente" />
                 </RechartsAreaChart>
               </ResponsiveContainer>
             </CardContent>
@@ -722,7 +722,7 @@ const ReportesKPIs: React.FC = () => {
             <Card className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                  <Target className="text-[#8cb43a]" />
+                  <Target className="text-[#1e3269]" />
                   Análisis de Rendimiento
                 </CardTitle>
               </CardHeader>
@@ -732,8 +732,8 @@ const ReportesKPIs: React.FC = () => {
                     <PolarGrid />
                     <PolarAngleAxis dataKey="category" />
                     <PolarRadiusAxis angle={90} domain={[0, 100]} />
-                    <Radar name="Puntuación Actual" dataKey="score" stroke="#8cb43a" fill="#8cb43a" fillOpacity={0.3} />
-                    <Radar name="Objetivo" dataKey="target" stroke="#ef4444" fill="#ef4444" fillOpacity={0.1} />
+                    <Radar name="Puntuación Actual" dataKey="score" stroke="#1e3269" fill="#1e3269" fillOpacity={0.3} />
+                    <Radar name="Objetivo" dataKey="target" stroke="#fbbf24" fill="#fbbf24" fillOpacity={0.1} />
                     <Legend />
                   </RadarChart>
                 </ResponsiveContainer>
@@ -744,7 +744,7 @@ const ReportesKPIs: React.FC = () => {
             <Card className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                  <CheckCircle className="text-[#8cb43a]" />
+                  <CheckCircle className="text-[#1e3269]" />
                   Cumplimiento de Objetivos
                 </CardTitle>
               </CardHeader>
@@ -756,7 +756,7 @@ const ReportesKPIs: React.FC = () => {
                     <YAxis />
                     <Tooltip formatter={(value) => [`${value}%`, 'Cumplimiento']} />
                     <Legend />
-                    <Bar dataKey="score" fill="#8cb43a" name="Puntuación Actual" />
+                    <Bar dataKey="score" fill="#1e3269" name="Puntuación" />
                   </RechartsBarChart>
                 </ResponsiveContainer>
               </CardContent>
@@ -769,7 +769,7 @@ const ReportesKPIs: React.FC = () => {
           <Card className="bg-white shadow-sm border border-gray-200">
             <CardHeader>
               <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                <Building2 className="text-[#8cb43a]" />
+                <Building2 className="text-[#1e3269]" />
                 Rendimiento por Departamento
               </CardTitle>
             </CardHeader>
@@ -782,8 +782,8 @@ const ReportesKPIs: React.FC = () => {
                   <YAxis yAxisId="right" orientation="right" />
                   <Tooltip />
                   <Legend />
-                  <Bar yAxisId="left" dataKey="progress" fill="#8cb43a" name="Progreso (%)" />
-                  <Bar yAxisId="left" dataKey="efficiency" fill="#3b82f6" name="Eficiencia (%)" />
+                  <Bar yAxisId="left" dataKey="progress" fill="#1e3269" name="Progreso (%)" />
+                  <Bar yAxisId="left" dataKey="efficiency" fill="#fbbf24" name="Eficiencia (%)" />
                   <Line yAxisId="right" type="monotone" dataKey="risk" stroke="#ef4444" strokeWidth={2} name="Riesgo" />
                 </ComposedChart>
               </ResponsiveContainer>
@@ -796,7 +796,7 @@ const ReportesKPIs: React.FC = () => {
           <Card className="bg-white shadow-sm border border-gray-200">
             <CardHeader>
               <CardTitle className="text-lg text-gray-800 flex items-center gap-2">
-                <BarChart2 className="text-[#8cb43a]" />
+                <BarChart2 className="text-[#1e3269]" />
                 Tabla Detallada de KPIs
               </CardTitle>
             </CardHeader>
